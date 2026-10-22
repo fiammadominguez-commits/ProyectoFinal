@@ -17,7 +17,7 @@ public class TestConexion {
         public static void main(String[] args) {
 
       Conexion.getConexion();
- //public static void main(String[] args) {
+ 
 
         Pasajero pasajero = new Pasajero();
 
