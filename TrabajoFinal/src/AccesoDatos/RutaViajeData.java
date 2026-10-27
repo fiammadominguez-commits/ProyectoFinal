@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import AccesoDatos.ColectivoData;
+import Entidades.Colectivo;
 /**
  *
  * @author LAURA TELLO
@@ -16,6 +18,7 @@ import java.sql.SQLException;
 public class RutaViajeData {
     
     private Connection con = null;
+    private ColectivoData coleData = new ColectivoData();
 
     public RutaViajeData() {
         con = Conexion.getConexion();
@@ -55,24 +58,28 @@ public class RutaViajeData {
     
     public RutaViaje buscarRutaPorID(int id){
     RutaViaje ruta = null;
+    Colectivo cole = null;
     String sql = "SELECT * FROM rutas WHERE ID_Ruta = ?";
     try{
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, id);
     ResultSet rs= ps.executeQuery();
     
-//        while (rs.next()) {
-//            ruta = new RutaViaje(
-//            rs.getInt("ID_Ruta"),
-//                    rs.getString("Origen"),
-//                    rs.getString("Destino"),
-//                    rs.getTime("HoraSalida").toLocalTime(),
-//                    rs.getTime("HoraLlegada").toLocalTime(),
-//                    rs.getInt("ID_Colectivo"),
-//                    rs.getDouble("Precio"),
-//                    rs.getBoolean("Estado")
-//            );
-//        }
+        while (rs.next()) {
+            cole=coleData.buscarColectivoPorID(rs.getInt("ID_Colectivo"));
+            ruta = new RutaViaje(
+            rs.getInt("ID_Ruta"),
+                    rs.getString("Origen"),
+                    rs.getString("Destino"),
+                    rs.getTime("HoraSalida").toLocalTime(),
+                    rs.getTime("HoraLlegada").toLocalTime(),
+                   cole,
+                    rs.getDouble("Precio"),
+                    rs.getBoolean("Estado")
+            );
+        }
+        rs.close();
+        ps.close();
     }
     catch(SQLException ex){
         System.out.println("Error al buscar ruta "+ ex.getMessage());
