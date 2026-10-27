@@ -19,24 +19,20 @@ import Entidades.RutaViaje;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-/**
- *
- * @author LAURA TELLO
- */
-public class TestConexion {
-    
-        public static void main(String[] args) {
 
-    
+public class TestConexion {
+
+    public static void main(String[] args) {
+
         // PASAJERO
 
         Pasajero pasajero = new Pasajero();
 
-        pasajero.setDni("40777888");
-        pasajero.setNombre("Maria");
-        pasajero.setApellido("Lopez");
-        pasajero.setCorreo("maria@gmail.com");
-        pasajero.setTelefono("2664777888");
+        pasajero.setDni("59340366");
+        pasajero.setNombre("Ana");
+        pasajero.setApellido("Sosa");
+        pasajero.setCorreo("ana@gmail.com");
+        pasajero.setTelefono("2664888100");
         pasajero.setEstado(true);
 
         PasajeroData pd = new PasajeroData();
@@ -46,17 +42,17 @@ public class TestConexion {
 
         Colectivo colectivo = new Colectivo();
 
-        colectivo.setMatricula("AE789GH");
-        colectivo.setMarca("Volvo");
-        colectivo.setModelo("9700");
-        colectivo.setCapacidad(45);
-        colectivo.setChofer("Luis Fernandez");
+        colectivo.setMatricula("AF123JK");
+        colectivo.setMarca("Mercedes");
+        colectivo.setModelo("O500");
+        colectivo.setCapacidad(50);
+        colectivo.setChofer("Pedro Ortiz");
         colectivo.setEstado(true);
 
         ColectivoData cd = new ColectivoData();
         cd.guardarColectivo(colectivo);
 
-        // OBJETOS CON IDS EXISTENTES
+        // OBJETOS CON IDs EXISTENTES
 
         Colectivo colectivoFK = new Colectivo();
         colectivoFK.setIdColectivo(1);
@@ -64,23 +60,12 @@ public class TestConexion {
         Pasajero pasajeroFK = new Pasajero();
         pasajeroFK.setIdPasajero(1);
 
-        // LUGAR
-
-        Lugar lugar = new Lugar();
-
-        lugar.setColectivo(colectivoFK);
-        lugar.setNumeroAsiento(1);
-        lugar.setEstado(true);
-
-        LugarData ld = new LugarData();
-        ld.guardarLugar(lugar);
-
         // RUTA
 
         RutaViaje ruta = new RutaViaje();
 
         ruta.setOrigen("San Luis");
-        ruta.setDestino("Cordoba");
+        ruta.setDestino("La Rioja");
         ruta.setHoraSalida(LocalTime.of(8, 0));
         ruta.setHoraLlegada(LocalTime.of(12, 30));
         ruta.setColectivo(colectivoFK);
@@ -90,32 +75,43 @@ public class TestConexion {
         RutaViajeData rd = new RutaViajeData();
         rd.guardarRuta(ruta);
 
-        // OBJETOS CON IDs YA CREADOS
-
-        Lugar lugarFK = new Lugar();
-        lugarFK.setIdLugar(1);
+        // OBJETO RUTA EXISTENTE
 
         RutaViaje rutaFK = new RutaViaje();
         rutaFK.setIdRuta(1);
 
-        // PASAJE
+        // LUGAR
 
-        Pasaje pasaje = new Pasaje();
+        Lugar lugar = new Lugar();
 
-        pasaje.setPasajero(pasajeroFK);
-        pasaje.setLugar(lugarFK);
-        pasaje.setRutaViaje(rutaFK);
-        pasaje.setFechaVenta(LocalDate.now());
-        pasaje.setHoraVenta(LocalTime.now());
-        pasaje.setPrecio(15000);
-        pasaje.setEstado(true);
+        lugar.setRuta(rutaFK);
+        lugar.setNumeroAsiento(1);
+        lugar.setEstado(true);
 
-        PasajeData pasajeData = new PasajeData();
-        pasajeData.guardarPasaje(pasaje);
+        LugarData ld = new LugarData();
+        ld.guardarLugar(lugar);
 
-    
+        // LUGAR EXISTENTE
 
-             }
+Lugar lugarFK = new Lugar();
+lugarFK.setIdLugar(2);
+
+// PASAJE
+
+Pasaje pasaje = new Pasaje();
+
+pasaje.setPasajero(pasajeroFK);
+pasaje.setLugar(lugarFK);
+pasaje.setFechaVenta(LocalDate.now());
+pasaje.setHoraVenta(LocalTime.now());
+pasaje.setPrecio(15000);
+pasaje.setEstado(true);
+
+PasajeData pasajeData = new PasajeData();
+pasajeData.guardarPasaje(pasaje);
+
+        
     }
+}
         
 
