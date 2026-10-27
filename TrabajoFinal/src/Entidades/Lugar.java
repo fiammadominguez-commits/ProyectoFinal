@@ -5,29 +5,25 @@
  */
 package Entidades;
 
-/**
- *
- * @author LAURA TELLO
- */
 public class Lugar {
-    
+
     private int idLugar;
-    private Colectivo colectivo;
+    private RutaViaje ruta;
     private int numeroAsiento;
     private boolean estado;
 
     public Lugar() {
     }
 
-    public Lugar(Colectivo colectivo, int numeroAsiento, boolean estado) {
-        this.colectivo = colectivo;
+    public Lugar(RutaViaje ruta, int numeroAsiento, boolean estado) {
+        this.ruta = ruta;
         this.numeroAsiento = numeroAsiento;
         this.estado = estado;
     }
 
-    public Lugar(int idLugar, Colectivo colectivo, int numeroAsiento, boolean estado) {
+    public Lugar(int idLugar, RutaViaje ruta, int numeroAsiento, boolean estado) {
         this.idLugar = idLugar;
-        this.colectivo = colectivo;
+        this.ruta = ruta;
         this.numeroAsiento = numeroAsiento;
         this.estado = estado;
     }
@@ -40,12 +36,12 @@ public class Lugar {
         this.idLugar = idLugar;
     }
 
-    public Colectivo getColectivo() {
-        return colectivo;
+    public RutaViaje getRuta() {
+        return ruta;
     }
 
-    public void setColectivo(Colectivo colectivo) {
-        this.colectivo = colectivo;
+    public void setRuta(RutaViaje ruta) {
+        this.ruta = ruta;
     }
 
     public int getNumeroAsiento() {

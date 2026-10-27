@@ -4,16 +4,14 @@
  * and open the template in the editor.
  */
 package AccesoDatos;
+
 import Entidades.Lugar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-/**
- *
- * @author LAURA TELLO
- */
+
 public class LugarData {
-    
+
     private Connection con = null;
 
     public LugarData() {
@@ -23,14 +21,14 @@ public class LugarData {
     public void guardarLugar(Lugar lugar) {
 
         String sql = "INSERT INTO lugares "
-                + "(ID_Colectivo, NumeroAsiento, Estado) "
+                + "(ID_Ruta, NumeroAsiento, Estado) "
                 + "VALUES (?,?,?)";
 
         try {
 
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setInt(1, lugar.getColectivo().getIdColectivo());
+            ps.setInt(1, lugar.getRuta().getIdRuta());
             ps.setInt(2, lugar.getNumeroAsiento());
             ps.setBoolean(3, lugar.isEstado());
 
