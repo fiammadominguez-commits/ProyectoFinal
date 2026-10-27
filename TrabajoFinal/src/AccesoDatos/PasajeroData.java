@@ -124,5 +124,33 @@ public class PasajeroData {
     return p;
     }
     
+    public Pasajero buscarPasajeroPorID(int id){
+    Pasajero p = null;
+    String sql = "SELECT * FROM pasajeros WHERE ID_Pasajero= ?";
+    try{
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, id);
+    ResultSet rs = ps.executeQuery();
+    
+        if (rs.next()) {
+            p = new Pasajero(
+                    rs.getInt("ID_Pasajero"),
+                    rs.getString("DNI"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellido"),
+                    rs.getString("Correo"),
+                    rs.getString("Telefono"),
+                    rs.getBoolean("Estado")
+            );
+        }
+    rs.close();
+    ps.close();
+    
+    }
+    catch(SQLException ex){
+        System.out.println("Error al buscar pasajero"+ ex.getMessage());
+    }
+    return p;
+    }
 }
 

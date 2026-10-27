@@ -7,6 +7,7 @@ package AccesoDatos;
 import Entidades.RutaViaje;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  *
@@ -50,5 +51,32 @@ public class RutaViajeData {
             System.out.println("Error al guardar ruta");
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public RutaViaje buscarRutaPorID(int id){
+    RutaViaje ruta = null;
+    String sql = "SELECT * FROM rutas WHERE ID_Ruta = ?";
+    try{
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, id);
+    ResultSet rs= ps.executeQuery();
+    
+//        while (rs.next()) {
+//            ruta = new RutaViaje(
+//            rs.getInt("ID_Ruta"),
+//                    rs.getString("Origen"),
+//                    rs.getString("Destino"),
+//                    rs.getTime("HoraSalida").toLocalTime(),
+//                    rs.getTime("HoraLlegada").toLocalTime(),
+//                    rs.getInt("ID_Colectivo"),
+//                    rs.getDouble("Precio"),
+//                    rs.getBoolean("Estado")
+//            );
+//        }
+    }
+    catch(SQLException ex){
+        System.out.println("Error al buscar ruta "+ ex.getMessage());
+    }
+    return ruta;
     }
 }
