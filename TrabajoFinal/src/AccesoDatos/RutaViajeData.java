@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import AccesoDatos.ColectivoData;
 import Entidades.Colectivo;
+import Entidades.Lugar;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author LAURA TELLO
@@ -56,36 +59,36 @@ public class RutaViajeData {
         }
     }
     
-//    public RutaViaje buscarRutaPorID(int id){
-//    RutaViaje ruta = null;
-//    Colectivo cole = null;
-//    String sql = "SELECT * FROM rutas WHERE ID_Ruta = ?";
-//    try{
-//    PreparedStatement ps = con.prepareStatement(sql);
-//    ps.setInt(1, id);
-//    ResultSet rs= ps.executeQuery();
-//    
-//        while (rs.next()) {
-//            cole=coleData.buscarColectivoPorID(rs.getInt("ID_Colectivo"));
-//            ruta = new RutaViaje(
-//            rs.getInt("ID_Ruta"),
-//                    rs.getString("Origen"),
-//                    rs.getString("Destino"),
-//                    rs.getTime("HoraSalida").toLocalTime(),
-//                    rs.getTime("HoraLlegada").toLocalTime(),
-//                   cole,
-//                    rs.getDouble("Precio"),
-//                    rs.getBoolean("Estado")
-//            );
-//        }
-//        rs.close();
-//        ps.close();
-//    }
-//    catch(SQLException ex){
-//        System.out.println("Error al buscar ruta "+ ex.getMessage());
-//    }
-//    return ruta;
-//    }
+    public RutaViaje buscarRutaPorID(int id){
+    RutaViaje ruta = null;
+    Colectivo cole = null;
+    String sql = "SELECT * FROM rutas WHERE ID_Ruta = ?";
+    try{
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setInt(1, id);
+    ResultSet rs= ps.executeQuery();
+    
+        while (rs.next()) {
+            cole=coleData.buscarColectivoPorID(rs.getInt("ID_Colectivo"));
+            ruta = new RutaViaje(
+            rs.getInt("ID_Ruta"),
+                    rs.getString("Origen"),
+                    rs.getString("Destino"),
+                    rs.getTime("HoraSalida").toLocalTime(),
+                    rs.getTime("HoraLlegada").toLocalTime(),
+                   cole,
+                    rs.getDouble("Precio"),
+                    rs.getBoolean("Estado")
+            );
+        }
+        rs.close();
+        ps.close();
+    }
+    catch(SQLException ex){
+        System.out.println("Error al buscar ruta "+ ex.getMessage());
+    }
+    return ruta;
+    }
     
     public void eliminarRuta(RutaViaje ruta){
     String sql = "DELETE FROM rutas WHERE ID_Ruta = ?";
@@ -154,4 +157,56 @@ public class RutaViajeData {
             System.out.println(ex.getMessage());
         }
     }
+    
+     public List<Lugar> listarLugaresDesocupados(RutaViaje ruta){
+     List<Lugar> lugaresd = new ArrayList<>();
+     String sql = "SELECT * FROM lugares WHERE ID_Ruta = ? AND Estado= false";
+     try{
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1,ruta.getIdRuta());
+     ResultSet rs = ps.executeQuery();
+     
+         while (rs.next()) {
+             Lugar lugar = new Lugar(
+             rs.getInt("ID_Lugar"),
+                     ruta,
+                     rs.getInt("NumeroAsiento"),
+                     rs.getBoolean("Estado")
+             );
+             lugaresd.add(lugar);
+         }
+     rs.close();
+     ps.close();
+     }
+     catch(SQLException ex){
+         System.out.println("Error al listar lugares desocupados");
+     }
+     return lugaresd;
+     }
+     
+     public List<Lugar> listarLugaresOcupados(RutaViaje ruta){
+     List<Lugar> lugaresd = new ArrayList<>();
+     String sql = "SELECT * FROM lugares WHERE ID_Ruta = ? AND Estado= true";
+     try{
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1,ruta.getIdRuta());
+     ResultSet rs = ps.executeQuery();
+     
+         while (rs.next()) {
+             Lugar lugar = new Lugar(
+             rs.getInt("ID_Lugar"),
+                     ruta,
+                     rs.getInt("NumeroAsiento"),
+                     rs.getBoolean("Estado")
+             );
+             lugaresd.add(lugar);
+         }
+     rs.close();
+     ps.close();
+     }
+     catch(SQLException ex){
+         System.out.println("Error al listar lugares desocupados");
+     }
+     return lugaresd;
+     }
 }

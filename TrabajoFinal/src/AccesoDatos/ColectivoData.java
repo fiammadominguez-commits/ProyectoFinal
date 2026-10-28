@@ -162,4 +162,41 @@ public class ColectivoData {
 
         return colectivo;
     }
+    
+    public Colectivo buscarColectivoPorID(int id) {
+
+        Colectivo colectivo = null;
+
+        String sql = "SELECT * FROM colectivos WHERE ID_Colectivo = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                colectivo = new Colectivo(
+                        rs.getInt("ID_Colectivo"),
+                        rs.getString("Matricula"),
+                        rs.getString("Marca"),
+                        rs.getString("Modelo"),
+                        rs.getInt("Capacidad"),
+                        rs.getString("Chofer"),
+                        rs.getBoolean("Estado")
+                );
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+
+            System.out.println("Error al buscar colectivo: " + ex.getMessage());
+        }
+
+        return colectivo;
+    }
 }

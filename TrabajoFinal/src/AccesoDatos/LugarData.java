@@ -111,31 +111,31 @@ public class LugarData {
      }
      }
      
-//     public Lugar buscarLugarPorID(int id){
-//     Lugar lugar = null;
-//     RutaViaje ruta = null;
-//     String sql = "SELECT * FROM lugares WHERE ID_Lugar = ?";
-//     
-//     try{
-//     PreparedStatement ps = con.prepareStatement(sql);
-//     ps.setInt(1, id);
-//     ResultSet rs = ps.executeQuery();
-//     
-//         while (rs.next()) {
-//             
-//             ruta = rutaData.BuscarRutaPorID(rs.getInt("ID_Ruta"));
-//             lugar = new Lugar(
-//             rs.getInt("ID_Lugar"),
-//                     ruta,
-//                     rs.getInt("NumeroAsiento"),
-//                     rs.getBoolean("Estado")
-//             );
-//         }
-//     }
-//     catch(SQLException ex){
-//         System.out.println("Error al buscarLugar "+ex.getMessage());
-//     }
-//     
-//     return lugar;
-//     }
+     public Lugar buscarLugarPorID(int id){
+     Lugar lugar = null;
+     RutaViaje ruta = null;
+     String sql = "SELECT * FROM lugares WHERE ID_Lugar = ?";
+     
+     try{
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, id);
+     ResultSet rs = ps.executeQuery();
+     
+         while (rs.next()) {
+             
+             ruta = rutaData.buscarRutaPorID(rs.getInt("ID_Ruta"));
+             lugar = new Lugar(
+             rs.getInt("ID_Lugar"),
+                     ruta,
+                     rs.getInt("NumeroAsiento"),
+                     rs.getBoolean("Estado")
+             );
+         }
+     }
+     catch(SQLException ex){
+         System.out.println("Error al buscarLugar "+ex.getMessage());
+     }
+     
+     return lugar;
+   }
 }
