@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author LAURA TELLO
@@ -198,5 +200,62 @@ public class ColectivoData {
         }
 
         return colectivo;
+    }
+    
+    public void darDeAltaColectivo(Colectivo colectivo) {
+ 
+        String sql = "UPDATE colectivos SET Estado = true WHERE ID_Colectivo = ?";
+ 
+        try {
+ 
+            PreparedStatement ps = con.prepareStatement(sql);
+ 
+            ps.setInt(1, colectivo.getIdColectivo());
+ 
+            ps.executeUpdate();
+ 
+            ps.close();
+ 
+            System.out.println("Colectivo dado de alta con exito");
+ 
+        } catch (SQLException ex) {
+ 
+            System.out.println("Error al dar de alta el colectivo: " + ex.getMessage());
+        }
+    }
+ 
+    public List<Colectivo> listarColectivos() {
+ 
+        List<Colectivo> colectivos = new ArrayList<>();
+ 
+        String sql = "SELECT * FROM colectivos ORDER BY ID_Colectivo";
+ 
+        try {
+ 
+            PreparedStatement ps = con.prepareStatement(sql);
+ 
+            ResultSet rs = ps.executeQuery();
+ 
+            while (rs.next()) {
+                colectivos.add(new Colectivo(
+                        rs.getInt("ID_Colectivo"),
+                        rs.getString("Matricula"),
+                        rs.getString("Marca"),
+                        rs.getString("Modelo"),
+                        rs.getInt("Capacidad"),
+                        rs.getString("Chofer"),
+                        rs.getBoolean("Estado")
+                ));
+            }
+ 
+            rs.close();
+            ps.close();
+ 
+        } catch (SQLException ex) {
+ 
+            System.out.println("Error al listar colectivos: " + ex.getMessage());
+        }
+ 
+        return colectivos;
     }
 }
