@@ -125,7 +125,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuItemAdministrarColectivoActionPerformed
 
     private void MenuItemAdministrarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAdministrarViajesActionPerformed
-      RutaViaje vistar = new RutaViaje();
+      VistaRutaViaje vistar = new VistaRutaViaje();
       panelEscritorio.add(vistar);
       vistar.setVisible(true);
     }//GEN-LAST:event_MenuItemAdministrarViajesActionPerformed

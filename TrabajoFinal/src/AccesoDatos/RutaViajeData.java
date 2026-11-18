@@ -224,7 +224,7 @@ public class RutaViajeData {
      return lugaresd;
      }
      
-     public List<RutaViaje> listarRutas(){
+     public List<RutaViaje> listarRutas() {
     List<RutaViaje> listaRutas = new ArrayList<>();
     RutaViaje ruta = null;
     Colectivo cole = null;
@@ -255,4 +255,37 @@ public class RutaViajeData {
     }
     return listaRutas;
     }
+     public List<RutaViaje> listarRutasDisponibles(){
+    List<RutaViaje> listaRutas = new ArrayList<>();
+    RutaViaje ruta = null;
+    Colectivo cole = null;
+    String sql = "SELECT * FROM rutas WHERE Estado = true;";
+    try{
+    PreparedStatement ps = con.prepareStatement(sql);
+    ResultSet rs= ps.executeQuery();
+    
+        while (rs.next()) {
+            cole=coleData.buscarColectivoPorID(rs.getInt("ID_Colectivo"));
+            ruta = new RutaViaje(
+            rs.getInt("ID_Ruta"),
+                    rs.getString("Origen"),
+                    rs.getString("Destino"),
+                    rs.getTime("HoraSalida").toLocalTime(),
+                    rs.getTime("HoraLlegada").toLocalTime(),
+                   cole,
+                    rs.getDouble("Precio"),
+                    rs.getBoolean("Estado")
+            );
+            listaRutas.add(ruta);
+        }
+        rs.close();
+        ps.close();
+    }
+    catch(SQLException ex){
+        System.out.println("Error al buscar rutas "+ ex.getMessage());
+    }
+    return listaRutas;
+   
+
 }
+ }
