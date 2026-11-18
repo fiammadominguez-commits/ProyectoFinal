@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import AccesoDatos.ColectivoData;
 import Entidades.Colectivo;
 import Entidades.Lugar;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -22,6 +23,7 @@ public class RutaViajeData {
     
     private Connection con = null;
     private ColectivoData coleData = new ColectivoData();
+    private LugarData lugarData = new LugarData();
 
     public RutaViajeData() {
         con = Conexion.getConexion();
@@ -35,8 +37,8 @@ public class RutaViajeData {
                 + "VALUES (?,?,?,?,?,?,?)";
 
         try {
-
-            PreparedStatement ps = con.prepareStatement(sql);
+        
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, ruta.getOrigen());
             ps.setString(2, ruta.getDestino());
@@ -48,10 +50,22 @@ public class RutaViajeData {
 
             ps.executeUpdate();
 
+            ResultSet rs = ps.getGeneratedKeys();
+            while (rs.next()) {
+                ruta.setIdRuta(rs.getInt(1));
+            }
+            rs.close();
             ps.close();
 
             System.out.println("Ruta guardada");
 
+                 for (int i = 0; i < ruta.getColectivo().getCapacidad(); i++) {
+               int numeroAsiento = i+1;
+               boolean estado = true;
+               Lugar lugar = new Lugar(ruta,numeroAsiento,estado);
+               
+               lugarData.guardarLugar(lugar);
+            }
         } catch (SQLException ex) {
 
             System.out.println("Error al guardar ruta");
@@ -209,4 +223,36 @@ public class RutaViajeData {
      }
      return lugaresd;
      }
+     
+     public List<RutaViaje> listarRutas(){
+    List<RutaViaje> listaRutas = new ArrayList<>();
+    RutaViaje ruta = null;
+    Colectivo cole = null;
+    String sql = "SELECT * FROM rutas";
+    try{
+    PreparedStatement ps = con.prepareStatement(sql);
+    ResultSet rs= ps.executeQuery();
+    
+        while (rs.next()) {
+            cole=coleData.buscarColectivoPorID(rs.getInt("ID_Colectivo"));
+            ruta = new RutaViaje(
+            rs.getInt("ID_Ruta"),
+                    rs.getString("Origen"),
+                    rs.getString("Destino"),
+                    rs.getTime("HoraSalida").toLocalTime(),
+                    rs.getTime("HoraLlegada").toLocalTime(),
+                   cole,
+                    rs.getDouble("Precio"),
+                    rs.getBoolean("Estado")
+            );
+            listaRutas.add(ruta);
+        }
+        rs.close();
+        ps.close();
+    }
+    catch(SQLException ex){
+        System.out.println("Error al buscar rutas "+ ex.getMessage());
+    }
+    return listaRutas;
+    }
 }

@@ -6,6 +6,7 @@
 package Entidades;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,6 +22,7 @@ public class RutaViaje {
     private Colectivo colectivo;
     private double precio;
     private boolean estado;
+    private ArrayList<Lugar> lugares = new ArrayList<>();
 
     public RutaViaje() {
     }

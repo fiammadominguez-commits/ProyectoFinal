@@ -11,11 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class LugarData {
 
     private Connection con = null;
-    private RutaViajeData rutaData = new RutaViajeData();
 
     public LugarData() {
         con = Conexion.getConexion();
@@ -85,11 +85,11 @@ public class LugarData {
     PreparedStatement ps = con.prepareStatement(sql);
     ps.setInt(1, lugar.getIdLugar());
     ps.executeUpdate();
-        System.out.println("Lugar dado de Baja con exito!");
+        System.out.println("Lugar dado de alta con exito!");
     ps.close();
     }
     catch(SQLException ex){
-        System.out.println("Error al dar de baja lugar "+ ex.getMessage());
+        System.out.println("Error al dar de alta lugar "+ ex.getMessage());
     }
     }
      
@@ -112,6 +112,7 @@ public class LugarData {
      }
      
      public Lugar buscarLugarPorID(int id){
+         RutaViajeData rutaData = new RutaViajeData();
      Lugar lugar = null;
      RutaViaje ruta = null;
      String sql = "SELECT * FROM lugares WHERE ID_Lugar = ?";
@@ -131,6 +132,8 @@ public class LugarData {
                      rs.getBoolean("Estado")
              );
          }
+         rs.close();
+         ps.close();
      }
      catch(SQLException ex){
          System.out.println("Error al buscarLugar "+ex.getMessage());

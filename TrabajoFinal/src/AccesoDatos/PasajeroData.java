@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author LAURA TELLO
@@ -103,7 +105,7 @@ public class PasajeroData {
     ps.setString(1, dni);
     ResultSet rs = ps.executeQuery();
     
-        if (rs.next()) {
+        while (rs.next()) {
             p = new Pasajero(
                     rs.getInt("ID_Pasajero"),
                     rs.getString("DNI"),
@@ -151,6 +153,37 @@ public class PasajeroData {
         System.out.println("Error al buscar pasajero"+ ex.getMessage());
     }
     return p;
+    }
+    
+    public List<Pasajero> listarPasajeros(){
+    Pasajero p = null;
+    List<Pasajero> listaPasajeros = new ArrayList<>();
+    String sql = "SELECT * FROM pasajeros";
+    try{
+    PreparedStatement ps = con.prepareStatement(sql);
+    ResultSet rs = ps.executeQuery();
+    
+        while (rs.next()) {
+            p = new Pasajero(
+                    rs.getInt("ID_Pasajero"),
+                    rs.getString("DNI"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellido"),
+                    rs.getString("Correo"),
+                    rs.getString("Telefono"),
+                    rs.getBoolean("Estado")
+            );
+            
+            listaPasajeros.add(p);
+        }
+    rs.close();
+    ps.close();
+    
+    }
+    catch(SQLException ex){
+        System.out.println("Error al buscar pasajero"+ ex.getMessage());
+    }
+    return listaPasajeros;
     }
 }
 

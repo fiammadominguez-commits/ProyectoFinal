@@ -8,12 +8,15 @@ package AccesoDatos;
 import Entidades.Lugar;
 import Entidades.Pasaje;
 import Entidades.Pasajero;
+import Entidades.RutaViaje;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PasajeData {
 
