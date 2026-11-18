@@ -8,25 +8,46 @@ import AccesoDatos.ColectivoData;
 import javax.swing.table.DefaultTableModel;
 import AccesoDatos.RutaViajeData;
 import Entidades.Colectivo;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author LAURA TELLO
  */
-public class RutaViaje extends javax.swing.JInternalFrame {
+public class VistaRutaViaje extends javax.swing.JInternalFrame {
 private RutaViajeData rutaData;
 private ColectivoData colectivoData;
 private DefaultTableModel modelo;
   
-    public RutaViaje() {
+    public VistaRutaViaje() {
         initComponents();
          rutaData = new RutaViajeData();
          colectivoData = new ColectivoData();
+         
         modelo = (DefaultTableModel) jtRutas.getModel();
         
         cargarColectivos ();
-    limpiarCampos();
+        limpiarCampos();
+        cargarTabla();
     }
+    private void cargarTabla() {
+
+    modelo.setRowCount(0);
+
+    for (Entidades.RutaViaje ruta : rutaData.listarRutas()) {
+
+        modelo.addRow(new Object[]{
+            ruta.getIdRuta(),
+            ruta.getOrigen(),
+            ruta.getDestino(),
+            ruta.getHoraSalida(),
+            ruta.getHoraLlegada(),
+            ruta.getColectivo().getMarca(),
+            ruta.getPrecio(),
+            ruta.isEstado() ? "Activa" : "Inactiva"
+        });
+    }
+}
     private void cargarColectivos() {
 
     jcbColectivo.removeAllItems();
@@ -53,7 +74,9 @@ private DefaultTableModel modelo;
 
     chkEstado.setSelected(false);
 
+   if(jcbColectivo.getItemCount() > 0){
     jcbColectivo.setSelectedIndex(0);
+}
 
     jtIDRuta.requestFocus();
 }
@@ -89,6 +112,8 @@ private DefaultTableModel modelo;
         btnSalir = new javax.swing.JButton();
         jspRutas = new javax.swing.JScrollPane();
         jtRutas = new javax.swing.JTable();
+        lblHoraS = new javax.swing.JLabel();
+        jblHoraLl = new javax.swing.JLabel();
 
         setTitle("Gestion de Rutas");
 
@@ -131,8 +156,6 @@ private DefaultTableModel modelo;
             }
         });
 
-        jcbColectivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jtIDRuta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jtOrigen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -154,10 +177,25 @@ private DefaultTableModel modelo;
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +223,10 @@ private DefaultTableModel modelo;
         ));
         jspRutas.setViewportView(jtRutas);
 
+        lblHoraS.setText("HH: mm");
+
+        jblHoraLl.setText("HH: mm");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,10 +237,9 @@ private DefaultTableModel modelo;
                     .addComponent(lblPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblIdRuta, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                                .addComponent(lblOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblIdRuta, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(lblOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblHoraLlegada, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                             .addComponent(lblColectivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -212,22 +253,37 @@ private DefaultTableModel modelo;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jcbColectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtHoraLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jtHoraLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jblHoraLl))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtIDRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(93, 93, 93)
+                                    .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtIDRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(21, 21, 21)
+                                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnModificar)
-                                    .addComponent(btnGuardar)
-                                    .addComponent(btnBuscar)
-                                    .addComponent(btnEliminar)
-                                    .addComponent(btnLimpiar)
-                                    .addComponent(btnSalir))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnGuardar)
+                                            .addComponent(btnEliminar)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblHoraS)))))
+                .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jspRutas, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
@@ -239,18 +295,6 @@ private DefaultTableModel modelo;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalir))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblIdRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtIDRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -261,15 +305,28 @@ private DefaultTableModel modelo;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHoraLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtHoraLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblHoraS))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHoraLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtHoraLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir)
+                    .addComponent(jblHoraLl))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblColectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,7 +341,7 @@ private DefaultTableModel modelo;
                     .addComponent(chkEstado))
                 .addGap(18, 18, 18)
                 .addComponent(jspRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -326,6 +383,19 @@ private DefaultTableModel modelo;
 
             chkEstado.setSelected(
                     ruta.isEstado());
+            int idColectivo = ruta.getColectivo().getIdColectivo();
+
+for (int i = 0; i < jcbColectivo.getItemCount(); i++) {
+
+    String item = jcbColectivo.getItemAt(i);
+
+    if(item.startsWith(idColectivo + " -")){
+
+        jcbColectivo.setSelectedIndex(i);
+
+        break;
+    }
+}
 
         }else{
 
@@ -343,6 +413,216 @@ private DefaultTableModel modelo;
 }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+
+    if(jtOrigen.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this,
+                "Debe ingresar el origen");
+        return;
+    }
+
+    if(jtDestino.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this,
+                "Debe ingresar el destino");
+        return;
+    }
+
+    if(jtOrigen.getText().equalsIgnoreCase(jtDestino.getText())){
+        JOptionPane.showMessageDialog(this,
+                "Origen y destino no pueden ser iguales");
+        return;
+    }
+
+    if(jtPrecio.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this,
+                "Debe ingresar el precio");
+        return;
+    }
+    
+    if(Double.parseDouble(jtPrecio.getText()) <= 0){
+    JOptionPane.showMessageDialog(this,
+            "El precio debe ser mayor a cero");
+    return;
+}
+    if(jtHoraSalida.getText().trim().isEmpty()
+        || jtHoraLlegada.getText().trim().isEmpty()){
+
+    JOptionPane.showMessageDialog(this,
+            "Debe ingresar las horas");
+    return;
+}
+
+        Entidades.RutaViaje ruta = new Entidades.RutaViaje();
+
+        ruta.setOrigen(jtOrigen.getText());
+        ruta.setDestino(jtDestino.getText());
+
+        ruta.setHoraSalida(
+                java.time.LocalTime.parse(
+                        jtHoraSalida.getText()));
+
+        ruta.setHoraLlegada(
+                java.time.LocalTime.parse(
+                        jtHoraLlegada.getText()));
+
+        String seleccionado = jcbColectivo.getSelectedItem().toString();
+
+        int idColectivo = Integer.parseInt(
+                seleccionado.split("-")[0].trim());
+
+        Colectivo colectivo =
+                colectivoData.buscarColectivoPorID(idColectivo);
+
+        ruta.setColectivo(colectivo);
+
+        ruta.setPrecio(
+                Double.parseDouble(jtPrecio.getText()));
+
+        ruta.setEstado(chkEstado.isSelected());
+
+        rutaData.guardarRuta(ruta);
+            cargarTabla();
+            
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Ruta guardada correctamente");
+
+        limpiarCampos();
+
+    } catch (Exception ex) {
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Error: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+          try {
+
+    if(jtOrigen.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this,
+                "Debe ingresar el origen");
+        return;
+    }
+
+    if(jtDestino.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this,
+                "Debe ingresar el destino");
+        return;
+    }
+    
+    if(jtOrigen.getText().equalsIgnoreCase(jtDestino.getText())){
+    JOptionPane.showMessageDialog(this,
+            "Origen y destino no pueden ser iguales");
+    return;
+}
+    if(jtPrecio.getText().trim().isEmpty()){
+    JOptionPane.showMessageDialog(this,
+            "Debe ingresar el precio");
+    return;
+}
+    if(Double.parseDouble(jtPrecio.getText()) <= 0){
+    JOptionPane.showMessageDialog(this,
+            "El precio debe ser mayor a cero");
+    return;
+}
+    
+    if(jtHoraSalida.getText().trim().isEmpty()
+        || jtHoraLlegada.getText().trim().isEmpty()){
+
+    JOptionPane.showMessageDialog(this,
+            "Debe ingresar las horas");
+    return;
+}
+
+        Entidades.RutaViaje ruta = new Entidades.RutaViaje();
+
+        ruta.setIdRuta(
+                Integer.parseInt(jtIDRuta.getText()));
+
+        ruta.setOrigen(jtOrigen.getText());
+
+        ruta.setDestino(jtDestino.getText());
+
+        ruta.setHoraSalida(
+                java.time.LocalTime.parse(
+                        jtHoraSalida.getText()));
+
+        ruta.setHoraLlegada(
+                java.time.LocalTime.parse(
+                        jtHoraLlegada.getText()));
+
+        String seleccionado =
+                jcbColectivo.getSelectedItem().toString();
+
+        int idColectivo =
+                Integer.parseInt(
+                        seleccionado.split("-")[0].trim());
+
+        Colectivo colectivo =
+                colectivoData.buscarColectivoPorID(
+                        idColectivo);
+
+        ruta.setColectivo(colectivo);
+
+        ruta.setPrecio(
+                Double.parseDouble(
+                        jtPrecio.getText()));
+
+        ruta.setEstado(
+                chkEstado.isSelected());
+
+        rutaData.modificarRuta(ruta);
+            cargarTabla();
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Ruta modificada correctamente");
+
+    } catch (Exception ex) {
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Error: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+            try {
+
+        int id = Integer.parseInt(jtIDRuta.getText());
+
+        Entidades.RutaViaje ruta =
+                rutaData.buscarRutaPorID(id);
+
+        if (ruta != null) {
+
+            rutaData.darDeBajaRuta(ruta);
+                 cargarTabla();
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ruta dada de baja correctamente");
+
+            limpiarCampos();
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ruta no encontrada");
+        }
+
+    } catch (NumberFormatException ex) {
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Ingrese un ID válido");
+    }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -352,6 +632,7 @@ private DefaultTableModel modelo;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JCheckBox chkEstado;
+    private javax.swing.JLabel jblHoraLl;
     private javax.swing.JComboBox<String> jcbColectivo;
     private javax.swing.JScrollPane jspRutas;
     private javax.swing.JTextField jtDestino;
@@ -365,6 +646,7 @@ private DefaultTableModel modelo;
     private javax.swing.JLabel lblDestino;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblHoraLlegada;
+    private javax.swing.JLabel lblHoraS;
     private javax.swing.JLabel lblHoraSalida;
     private javax.swing.JLabel lblIdRuta;
     private javax.swing.JLabel lblOrigen;

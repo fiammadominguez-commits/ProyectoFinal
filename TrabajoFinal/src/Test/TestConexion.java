@@ -17,6 +17,10 @@ import Entidades.Pasaje;
 import Entidades.Pasajero;
 import Entidades.RutaViaje;
 
+import Vista.VistaRutaViaje;
+import javax.swing.JFrame;
+import javax.swing.JDesktopPane;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -110,8 +114,10 @@ pasaje.setEstado(true);
 PasajeData pasajeData = new PasajeData();
 pasajeData.guardarPasaje(pasaje);
 
-        
     }
 }
+        
+    
+
         
 
