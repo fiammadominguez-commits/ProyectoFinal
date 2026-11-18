@@ -42,11 +42,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        panelEscritorio.setBackground(new java.awt.Color(204, 204, 255));
         panelEscritorio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153), 5));
         panelEscritorio.setForeground(new java.awt.Color(204, 204, 255));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Flecha-Flash");
@@ -74,7 +75,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Colectivos");
 
         MenuItemAdministrarColectivo.setText("Administrar");
-        MenuItemAdministrarColectivo.addActionListener(this::MenuItemAdministrarColectivoActionPerformed);
+        MenuItemAdministrarColectivo.addActionListener();
         jMenu1.add(MenuItemAdministrarColectivo);
 
         jMenuBar1.add(jMenu1);
@@ -82,7 +83,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Viajes");
 
         MenuItemAdministrarViajes.setText("Administrar");
-        MenuItemAdministrarViajes.addActionListener(this::MenuItemAdministrarViajesActionPerformed);
+        MenuItemAdministrarViajes.addActionListener();
         jMenu2.add(MenuItemAdministrarViajes);
 
         jMenuBar1.add(jMenu2);
@@ -97,7 +98,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Pasajes");
 
         MenuItemAdminPasajes.setText("Administrar");
-        MenuItemAdminPasajes.addActionListener(this::MenuItemAdminPasajesActionPerformed);
+        MenuItemAdminPasajes.addActionListener();
         jMenu4.add(MenuItemAdminPasajes);
 
         jMenuBar1.add(jMenu4);

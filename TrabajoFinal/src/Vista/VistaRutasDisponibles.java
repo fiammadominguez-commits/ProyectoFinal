@@ -59,6 +59,8 @@ private DefaultTableModel modelo;
         btnSalir = new java.awt.Button();
         lblRutasDisponibles = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+
         jtRutasDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -86,6 +88,7 @@ private DefaultTableModel modelo;
             }
         });
 
+        lblRutasDisponibles.setFont(new java.awt.Font("Microsoft YaHei", 3, 13)); // NOI18N
         lblRutasDisponibles.setText("RUTAS DISPONIBLES");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

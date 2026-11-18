@@ -55,6 +55,8 @@ public class AgregarPasajero extends javax.swing.JInternalFrame {
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
         txtDNi.setText("DNI");
 
         jLabel2.setText("Nombre");
@@ -65,7 +67,7 @@ public class AgregarPasajero extends javax.swing.JInternalFrame {
 
         jScrollPane3.setViewportView(txtApellido);
 
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 3, 14)); // NOI18N
         jLabel4.setText("AGREGAR PASAJERO");
 
         jLabel5.setText("Correo");
@@ -162,7 +164,7 @@ public class AgregarPasajero extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbSalir))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
