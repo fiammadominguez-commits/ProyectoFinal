@@ -35,6 +35,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         MenuItemAdministrarColectivo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MenuItemAdministrarViajes = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         MenuItemAdministrarPasajeros = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -75,7 +76,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Colectivos");
 
         MenuItemAdministrarColectivo.setText("Administrar");
-        MenuItemAdministrarColectivo.addActionListener();
+        MenuItemAdministrarColectivo.addActionListener(this::MenuItemAdministrarColectivoActionPerformed);
         jMenu1.add(MenuItemAdministrarColectivo);
 
         jMenuBar1.add(jMenu1);
@@ -83,14 +84,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Viajes");
 
         MenuItemAdministrarViajes.setText("Administrar");
-        MenuItemAdministrarViajes.addActionListener();
+        MenuItemAdministrarViajes.addActionListener(this::MenuItemAdministrarViajesActionPerformed);
         jMenu2.add(MenuItemAdministrarViajes);
+
+        jMenuItem1.setText("Viajes disponibles");
+        jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
+        jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Pasajeros");
 
         MenuItemAdministrarPasajeros.setText("Administrar");
+        MenuItemAdministrarPasajeros.addActionListener(this::MenuItemAdministrarPasajerosActionPerformed);
         jMenu3.add(MenuItemAdministrarPasajeros);
 
         jMenuBar1.add(jMenu3);
@@ -98,7 +104,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Pasajes");
 
         MenuItemAdminPasajes.setText("Administrar");
-        MenuItemAdminPasajes.addActionListener();
+        MenuItemAdminPasajes.addActionListener(this::MenuItemAdminPasajesActionPerformed);
         jMenu4.add(MenuItemAdminPasajes);
 
         jMenuBar1.add(jMenu4);
@@ -120,22 +126,34 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuItemAdministrarColectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAdministrarColectivoActionPerformed
-       ColectivoVista vistac = new ColectivoVista();
-       panelEscritorio.add(vistac);
-       vistac.setVisible(true);
+       ColectivoVista coleVista= new ColectivoVista();
+       panelEscritorio.add(coleVista);
+       coleVista.setVisible(true);
     }//GEN-LAST:event_MenuItemAdministrarColectivoActionPerformed
 
     private void MenuItemAdministrarViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAdministrarViajesActionPerformed
-      VistaRutaViaje vistar = new VistaRutaViaje();
-      panelEscritorio.add(vistar);
-      vistar.setVisible(true);
+       VistaRutaViaje vistaRut= new VistaRutaViaje();
+       panelEscritorio.add(vistaRut);
+       vistaRut.setVisible(true);
     }//GEN-LAST:event_MenuItemAdministrarViajesActionPerformed
+
+    private void MenuItemAdministrarPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAdministrarPasajerosActionPerformed
+        AgregarPasajero  vistaPasajero = new AgregarPasajero();
+        panelEscritorio.add(vistaPasajero);
+        vistaPasajero.setVisible(true);
+    }//GEN-LAST:event_MenuItemAdministrarPasajerosActionPerformed
 
     private void MenuItemAdminPasajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAdminPasajesActionPerformed
         VistaAsientos vistaAsientos = new VistaAsientos();
         panelEscritorio.add(vistaAsientos);
         vistaAsientos.setVisible(true);
     }//GEN-LAST:event_MenuItemAdminPasajesActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       VistaRutasDisponibles vistaRutasD= new VistaRutasDisponibles();
+       panelEscritorio.add(vistaRutasD);
+       vistaRutasD.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +191,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane panelEscritorio;
     // End of variables declaration//GEN-END:variables
 }

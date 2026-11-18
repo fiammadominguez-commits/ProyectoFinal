@@ -296,6 +296,7 @@ public class ColectivoVista extends javax.swing.JInternalFrame {
         btnEliminar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102), 4));
         setTitle("Colectivos");
 
         jLabel1.setText("Buscar por Matricula");
@@ -308,6 +309,7 @@ public class ColectivoVista extends javax.swing.JInternalFrame {
         btnVerTodos.setText("Ver todos");
         btnVerTodos.addActionListener(this::btnVerTodosActionPerformed);
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setText("ID:");
@@ -474,7 +476,7 @@ public class ColectivoVista extends javax.swing.JInternalFrame {
                                 .addComponent(btnEliminar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSalir)))
-                        .addGap(0, 19, Short.MAX_VALUE)))
+                        .addGap(0, 23, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

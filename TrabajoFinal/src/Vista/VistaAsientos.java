@@ -104,279 +104,278 @@ PasajeroData pasajeroData = new PasajeroData();
 
         btnAsiento1.setText("1");
         btnAsiento1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento1.addActionListener();
         panelAsientos.add(btnAsiento1);
-        btnAsiento1.setBounds(30, 30, 70, 21);
+        btnAsiento1.setBounds(30, 30, 70, 20);
 
         btnAsiento2.setText("2");
         btnAsiento2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento2.addActionListener();
+        btnAsiento2.addActionListener(this::btnAsiento2ActionPerformed);
         panelAsientos.add(btnAsiento2);
-        btnAsiento2.setBounds(120, 30, 70, 21);
+        btnAsiento2.setBounds(120, 30, 70, 20);
 
         btnAsiento3.setText("3");
         btnAsiento3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento3.addActionListener();
+        btnAsiento3.addActionListener(this::btnAsiento3ActionPerformed);
         panelAsientos.add(btnAsiento3);
-        btnAsiento3.setBounds(320, 30, 70, 21);
+        btnAsiento3.setBounds(320, 30, 70, 20);
 
         btnAsiento4.setText("4");
         btnAsiento4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento4.addActionListener();
+        btnAsiento4.addActionListener(this::btnAsiento4ActionPerformed);
         panelAsientos.add(btnAsiento4);
-        btnAsiento4.setBounds(410, 30, 70, 21);
+        btnAsiento4.setBounds(410, 30, 70, 20);
 
         btnAsiento5.setText("5");
         btnAsiento5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento5.addActionListener();
+        btnAsiento5.addActionListener(this::btnAsiento5ActionPerformed);
         panelAsientos.add(btnAsiento5);
-        btnAsiento5.setBounds(30, 70, 70, 21);
+        btnAsiento5.setBounds(30, 70, 70, 20);
 
         btnAsiento6.setText("6");
         btnAsiento6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento6.addActionListener();
+        btnAsiento6.addActionListener(this::btnAsiento6ActionPerformed);
         panelAsientos.add(btnAsiento6);
-        btnAsiento6.setBounds(120, 70, 70, 21);
+        btnAsiento6.setBounds(120, 70, 70, 20);
 
         btnAsiento7.setText("7");
         btnAsiento7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento7.addActionListener();
+        btnAsiento7.addActionListener(this::btnAsiento7ActionPerformed);
         panelAsientos.add(btnAsiento7);
-        btnAsiento7.setBounds(320, 70, 70, 21);
+        btnAsiento7.setBounds(320, 70, 70, 20);
 
         btnAsiento8.setText("8");
         btnAsiento8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento8.addActionListener();
+        btnAsiento8.addActionListener(this::btnAsiento8ActionPerformed);
         panelAsientos.add(btnAsiento8);
-        btnAsiento8.setBounds(410, 70, 70, 21);
+        btnAsiento8.setBounds(410, 70, 70, 20);
 
         btnAsiento9.setText("9");
         btnAsiento9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento9.addActionListener();
+        btnAsiento9.addActionListener(this::btnAsiento9ActionPerformed);
         panelAsientos.add(btnAsiento9);
-        btnAsiento9.setBounds(30, 110, 70, 21);
+        btnAsiento9.setBounds(30, 110, 70, 20);
 
         btnAsiento10.setText("10");
         btnAsiento10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento10.addActionListener();
+        btnAsiento10.addActionListener(this::btnAsiento10ActionPerformed);
         panelAsientos.add(btnAsiento10);
-        btnAsiento10.setBounds(120, 110, 70, 21);
+        btnAsiento10.setBounds(120, 110, 70, 20);
 
         btnAsiento11.setText("11");
         btnAsiento11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento11.addActionListener();
+        btnAsiento11.addActionListener(this::btnAsiento11ActionPerformed);
         panelAsientos.add(btnAsiento11);
-        btnAsiento11.setBounds(320, 110, 70, 21);
+        btnAsiento11.setBounds(320, 110, 70, 20);
 
         btnAsiento12.setText("12");
         btnAsiento12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento12.addActionListener();
+        btnAsiento12.addActionListener(this::btnAsiento12ActionPerformed);
         panelAsientos.add(btnAsiento12);
-        btnAsiento12.setBounds(410, 110, 70, 21);
+        btnAsiento12.setBounds(410, 110, 70, 20);
 
         btnAsiento13.setText("13");
         btnAsiento13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento13.addActionListener();
+        btnAsiento13.addActionListener(this::btnAsiento13ActionPerformed);
         panelAsientos.add(btnAsiento13);
-        btnAsiento13.setBounds(30, 150, 70, 21);
+        btnAsiento13.setBounds(30, 150, 70, 20);
 
         btnAsiento14.setText("14");
         btnAsiento14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento14.addActionListener();
+        btnAsiento14.addActionListener(this::btnAsiento14ActionPerformed);
         panelAsientos.add(btnAsiento14);
-        btnAsiento14.setBounds(120, 150, 70, 21);
+        btnAsiento14.setBounds(120, 150, 70, 20);
 
         btnAsiento15.setText("15");
         btnAsiento15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento15.addActionListener();
+        btnAsiento15.addActionListener(this::btnAsiento15ActionPerformed);
         panelAsientos.add(btnAsiento15);
-        btnAsiento15.setBounds(320, 150, 70, 21);
+        btnAsiento15.setBounds(320, 150, 70, 20);
 
         btnAsiento16.setText("16");
         btnAsiento16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento16.addActionListener();
+        btnAsiento16.addActionListener(this::btnAsiento16ActionPerformed);
         panelAsientos.add(btnAsiento16);
-        btnAsiento16.setBounds(410, 150, 70, 21);
+        btnAsiento16.setBounds(410, 150, 70, 20);
 
         btnAsiento17.setText("17");
         btnAsiento17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento17.addActionListener();
+        btnAsiento17.addActionListener(this::btnAsiento17ActionPerformed);
         panelAsientos.add(btnAsiento17);
-        btnAsiento17.setBounds(30, 190, 70, 21);
+        btnAsiento17.setBounds(30, 190, 70, 20);
 
         btnAsiento18.setText("18");
         btnAsiento18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento18.addActionListener();
+        btnAsiento18.addActionListener(this::btnAsiento18ActionPerformed);
         panelAsientos.add(btnAsiento18);
-        btnAsiento18.setBounds(120, 190, 70, 21);
+        btnAsiento18.setBounds(120, 190, 70, 20);
 
         btnAsiento19.setText("19");
         btnAsiento19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento19.addActionListener();
+        btnAsiento19.addActionListener(this::btnAsiento19ActionPerformed);
         panelAsientos.add(btnAsiento19);
-        btnAsiento19.setBounds(320, 190, 70, 21);
+        btnAsiento19.setBounds(320, 190, 70, 20);
 
         btnAsiento20.setText("20");
         btnAsiento20.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento20.addActionListener();
+        btnAsiento20.addActionListener(this::btnAsiento20ActionPerformed);
         panelAsientos.add(btnAsiento20);
-        btnAsiento20.setBounds(410, 190, 70, 21);
+        btnAsiento20.setBounds(410, 190, 70, 20);
 
         btnAsiento21.setText("21");
         btnAsiento21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento21.addActionListener();
+        btnAsiento21.addActionListener(this::btnAsiento21ActionPerformed);
         panelAsientos.add(btnAsiento21);
-        btnAsiento21.setBounds(30, 230, 70, 21);
+        btnAsiento21.setBounds(30, 230, 70, 20);
 
         btnAsiento22.setText("22");
         btnAsiento22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento22.addActionListener();
+        btnAsiento22.addActionListener(this::btnAsiento22ActionPerformed);
         panelAsientos.add(btnAsiento22);
-        btnAsiento22.setBounds(120, 230, 70, 21);
+        btnAsiento22.setBounds(120, 230, 70, 20);
 
         btnAsiento23.setText("23");
         btnAsiento23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento23.addActionListener();
+        btnAsiento23.addActionListener(this::btnAsiento23ActionPerformed);
         panelAsientos.add(btnAsiento23);
-        btnAsiento23.setBounds(320, 230, 70, 21);
+        btnAsiento23.setBounds(320, 230, 70, 20);
 
         btnAsiento24.setText("24");
         btnAsiento24.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento24.addActionListener();
+        btnAsiento24.addActionListener(this::btnAsiento24ActionPerformed);
         panelAsientos.add(btnAsiento24);
-        btnAsiento24.setBounds(410, 230, 70, 21);
+        btnAsiento24.setBounds(410, 230, 70, 20);
 
         btnAsiento25.setText("25");
         btnAsiento25.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento25.addActionListener();
+        btnAsiento25.addActionListener(this::btnAsiento25ActionPerformed);
         panelAsientos.add(btnAsiento25);
-        btnAsiento25.setBounds(30, 270, 70, 21);
+        btnAsiento25.setBounds(30, 270, 70, 20);
 
         btnAsiento26.setText("26");
         btnAsiento26.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento26.addActionListener();
+        btnAsiento26.addActionListener(this::btnAsiento26ActionPerformed);
         panelAsientos.add(btnAsiento26);
-        btnAsiento26.setBounds(120, 270, 70, 21);
+        btnAsiento26.setBounds(120, 270, 70, 20);
 
         btnAsiento29.setText("29");
         btnAsiento29.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento29.addActionListener();
+        btnAsiento29.addActionListener(this::btnAsiento29ActionPerformed);
         panelAsientos.add(btnAsiento29);
-        btnAsiento29.setBounds(30, 310, 70, 21);
+        btnAsiento29.setBounds(30, 310, 70, 20);
 
         btnAsiento30.setText("30");
         btnAsiento30.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento30.addActionListener();
+        btnAsiento30.addActionListener(this::btnAsiento30ActionPerformed);
         panelAsientos.add(btnAsiento30);
-        btnAsiento30.setBounds(120, 310, 70, 21);
+        btnAsiento30.setBounds(120, 310, 70, 20);
 
         btnAsiento27.setText("27");
         btnAsiento27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento27.addActionListener();
+        btnAsiento27.addActionListener(this::btnAsiento27ActionPerformed);
         panelAsientos.add(btnAsiento27);
-        btnAsiento27.setBounds(320, 270, 70, 21);
+        btnAsiento27.setBounds(320, 270, 70, 20);
 
         btnAsiento28.setText("28");
         btnAsiento28.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento28.addActionListener();
+        btnAsiento28.addActionListener(this::btnAsiento28ActionPerformed);
         panelAsientos.add(btnAsiento28);
-        btnAsiento28.setBounds(410, 270, 70, 21);
+        btnAsiento28.setBounds(410, 270, 70, 20);
 
         btnAsiento33.setText("33");
         btnAsiento33.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento33.addActionListener();
+        btnAsiento33.addActionListener(this::btnAsiento33ActionPerformed);
         panelAsientos.add(btnAsiento33);
-        btnAsiento33.setBounds(30, 350, 70, 21);
+        btnAsiento33.setBounds(30, 350, 70, 20);
 
         btnAsiento34.setText("34");
         btnAsiento34.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento34.addActionListener();
+        btnAsiento34.addActionListener(this::btnAsiento34ActionPerformed);
         panelAsientos.add(btnAsiento34);
-        btnAsiento34.setBounds(120, 350, 70, 21);
+        btnAsiento34.setBounds(120, 350, 70, 20);
 
         btnAsiento31.setText("31");
         btnAsiento31.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento31.addActionListener();
+        btnAsiento31.addActionListener(this::btnAsiento31ActionPerformed);
         panelAsientos.add(btnAsiento31);
-        btnAsiento31.setBounds(320, 310, 70, 21);
+        btnAsiento31.setBounds(320, 310, 70, 20);
 
         btnAsiento32.setText("32");
         btnAsiento32.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento32.addActionListener();
+        btnAsiento32.addActionListener(this::btnAsiento32ActionPerformed);
         panelAsientos.add(btnAsiento32);
-        btnAsiento32.setBounds(410, 310, 70, 21);
+        btnAsiento32.setBounds(410, 310, 70, 20);
 
         btnAsiento37.setText("37");
         btnAsiento37.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento37.addActionListener();
+        btnAsiento37.addActionListener(this::btnAsiento37ActionPerformed);
         panelAsientos.add(btnAsiento37);
-        btnAsiento37.setBounds(30, 390, 70, 21);
+        btnAsiento37.setBounds(30, 390, 70, 20);
 
         btnAsiento38.setText("38");
         btnAsiento38.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento38.addActionListener();
+        btnAsiento38.addActionListener(this::btnAsiento38ActionPerformed);
         panelAsientos.add(btnAsiento38);
-        btnAsiento38.setBounds(120, 390, 70, 21);
+        btnAsiento38.setBounds(120, 390, 70, 20);
 
         btnAsiento35.setText("35");
         btnAsiento35.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento35.addActionListener();
+        btnAsiento35.addActionListener(this::btnAsiento35ActionPerformed);
         panelAsientos.add(btnAsiento35);
-        btnAsiento35.setBounds(320, 350, 70, 21);
+        btnAsiento35.setBounds(320, 350, 70, 20);
 
         btnAsiento36.setText("36");
         btnAsiento36.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento36.addActionListener();
+        btnAsiento36.addActionListener(this::btnAsiento36ActionPerformed);
         panelAsientos.add(btnAsiento36);
-        btnAsiento36.setBounds(410, 350, 70, 21);
+        btnAsiento36.setBounds(410, 350, 70, 20);
 
         btnAsiento41.setText("41");
         btnAsiento41.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento41.addActionListener();
+        btnAsiento41.addActionListener(this::btnAsiento41ActionPerformed);
         panelAsientos.add(btnAsiento41);
-        btnAsiento41.setBounds(30, 430, 70, 21);
+        btnAsiento41.setBounds(30, 430, 70, 20);
 
         btnAsiento42.setText("42");
         btnAsiento42.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento42.addActionListener();
+        btnAsiento42.addActionListener(this::btnAsiento42ActionPerformed);
         panelAsientos.add(btnAsiento42);
-        btnAsiento42.setBounds(120, 430, 70, 21);
+        btnAsiento42.setBounds(120, 430, 70, 20);
 
         btnAsiento39.setText("39");
         btnAsiento39.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento39.addActionListener();
+        btnAsiento39.addActionListener(this::btnAsiento39ActionPerformed);
         panelAsientos.add(btnAsiento39);
-        btnAsiento39.setBounds(320, 390, 70, 21);
+        btnAsiento39.setBounds(320, 390, 70, 20);
 
         btnAsiento40.setText("40");
         btnAsiento40.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento40.addActionListener();
+        btnAsiento40.addActionListener(this::btnAsiento40ActionPerformed);
         panelAsientos.add(btnAsiento40);
-        btnAsiento40.setBounds(410, 390, 70, 21);
+        btnAsiento40.setBounds(410, 390, 70, 20);
 
         btnAsiento45.setText("45");
         btnAsiento45.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento45.addActionListener();
+        btnAsiento45.addActionListener(this::btnAsiento45ActionPerformed);
         panelAsientos.add(btnAsiento45);
-        btnAsiento45.setBounds(30, 470, 70, 21);
+        btnAsiento45.setBounds(30, 470, 70, 20);
 
         btnAsiento46.setText("46");
         btnAsiento46.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento46.addActionListener();
+        btnAsiento46.addActionListener(this::btnAsiento46ActionPerformed);
         panelAsientos.add(btnAsiento46);
-        btnAsiento46.setBounds(120, 470, 70, 21);
+        btnAsiento46.setBounds(120, 470, 70, 20);
 
         btnAsiento43.setText("43");
         btnAsiento43.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento43.addActionListener();
+        btnAsiento43.addActionListener(this::btnAsiento43ActionPerformed);
         panelAsientos.add(btnAsiento43);
-        btnAsiento43.setBounds(320, 430, 70, 21);
+        btnAsiento43.setBounds(320, 430, 70, 20);
 
         btnAsiento44.setText("44");
         btnAsiento44.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        btnAsiento44.addActionListener();
+        btnAsiento44.addActionListener(this::btnAsiento44ActionPerformed);
         panelAsientos.add(btnAsiento44);
-        btnAsiento44.setBounds(410, 430, 70, 21);
+        btnAsiento44.setBounds(410, 430, 70, 20);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Ruta:");
@@ -393,25 +392,28 @@ PasajeroData pasajeroData = new PasajeroData();
         );
 
         cboRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Ruta", " " }));
-        cboRuta.addActionListener();
+        cboRuta.addActionListener(this::cboRutaActionPerformed);
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
         btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener();
+        btnAgregar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 3, true));
+        btnAgregar.addActionListener(this::btnAgregarActionPerformed);
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener();
+        btnCancelar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 3, true));
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
         btnSalir.setText("Salir");
-        btnSalir.addActionListener();
+        btnSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 3, true));
+        btnSalir.addActionListener(this::btnSalirActionPerformed);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Pasajero:");
 
         cboPasajero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Pasajero", " " }));
-        cboPasajero.addActionListener();
+        cboPasajero.addActionListener(this::cboPasajeroActionPerformed);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 3, 36)); // NOI18N
@@ -493,10 +495,6 @@ PasajeroData pasajeroData = new PasajeroData();
     private void calcularAsientos(){
     
     }
-    private void btnAsiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAsiento1ActionPerformed
-
     private void btnAsiento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAsiento2ActionPerformed
