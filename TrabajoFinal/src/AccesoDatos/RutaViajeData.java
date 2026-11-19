@@ -104,6 +104,47 @@ public class RutaViajeData {
     return ruta;
     }
     
+    public boolean colectivoOcupado(int idColectivo,
+        java.time.LocalTime horaSalida,
+        java.time.LocalTime horaLlegada){
+
+    String sql = "SELECT * FROM rutas "
+            + "WHERE ID_Colectivo = ? "
+            + "AND HoraSalida = ? "
+            + "AND HoraLlegada = ? "
+            + "AND Estado = true";
+
+    try{
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, idColectivo);
+
+        ps.setTime(2,
+                java.sql.Time.valueOf(horaSalida));
+
+        ps.setTime(3,
+                java.sql.Time.valueOf(horaLlegada));
+
+        ResultSet rs = ps.executeQuery();
+
+        boolean ocupado = rs.next();
+
+        rs.close();
+        ps.close();
+
+        return ocupado;
+
+    }catch(SQLException ex){
+
+        System.out.println(
+                "Error al verificar horario "
+                        + ex.getMessage());
+
+        return false;
+    }
+}
+    
     public void eliminarRuta(RutaViaje ruta){
     String sql = "DELETE FROM rutas WHERE ID_Ruta = ?";
     try{
@@ -219,7 +260,7 @@ public class RutaViajeData {
      ps.close();
      }
      catch(SQLException ex){
-         System.out.println("Error al listar lugares desocupados");
+         System.out.println("Error al listar lugares ocupados");
      }
      return lugaresd;
      }
@@ -259,7 +300,8 @@ public class RutaViajeData {
     List<RutaViaje> listaRutas = new ArrayList<>();
     RutaViaje ruta = null;
     Colectivo cole = null;
-    String sql = "SELECT * FROM rutas WHERE Estado = true;";
+    String sql =
+    "SELECT * FROM rutas WHERE Estado = true ORDER BY ID_Ruta";
     try{
     PreparedStatement ps = con.prepareStatement(sql);
     ResultSet rs= ps.executeQuery();
