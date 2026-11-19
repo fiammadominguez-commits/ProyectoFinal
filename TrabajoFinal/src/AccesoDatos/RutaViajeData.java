@@ -61,7 +61,7 @@ public class RutaViajeData {
 
                  for (int i = 0; i < ruta.getColectivo().getCapacidad(); i++) {
                int numeroAsiento = i+1;
-               boolean estado = true;
+               boolean estado = false;
                Lugar lugar = new Lugar(ruta,numeroAsiento,estado);
                
                lugarData.guardarLugar(lugar);

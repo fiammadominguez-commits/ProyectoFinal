@@ -98,6 +98,11 @@ public class AgregarPasajero extends javax.swing.JInternalFrame {
 
         jbSalir.setText("Salir");
         jbSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 3, true));
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 3, 36)); // NOI18N
@@ -260,6 +265,10 @@ private void limpiarCampos() {
     txtTelefono.setText("");
     BoxEstado.setSelected(true);
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

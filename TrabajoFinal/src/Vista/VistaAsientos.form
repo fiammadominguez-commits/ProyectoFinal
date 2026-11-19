@@ -123,7 +123,11 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento1ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="30" y="30" width="70" height="-1"/>
@@ -138,6 +142,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento2ActionPerformed"/>
@@ -156,6 +161,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento3ActionPerformed"/>
@@ -174,6 +180,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento4ActionPerformed"/>
@@ -192,6 +199,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento5ActionPerformed"/>
@@ -210,6 +218,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento6ActionPerformed"/>
@@ -228,6 +237,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento7ActionPerformed"/>
@@ -246,6 +256,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento8ActionPerformed"/>
@@ -264,6 +275,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento9ActionPerformed"/>
@@ -282,6 +294,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento10ActionPerformed"/>
@@ -300,6 +313,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento11ActionPerformed"/>
@@ -318,6 +332,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento12ActionPerformed"/>
@@ -336,6 +351,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento13ActionPerformed"/>
@@ -354,6 +370,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento14ActionPerformed"/>
@@ -372,6 +389,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento15ActionPerformed"/>
@@ -390,6 +408,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento16ActionPerformed"/>
@@ -408,6 +427,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento17ActionPerformed"/>
@@ -426,6 +446,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento18ActionPerformed"/>
@@ -444,6 +465,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento19ActionPerformed"/>
@@ -462,6 +484,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento20ActionPerformed"/>
@@ -480,6 +503,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento21ActionPerformed"/>
@@ -498,6 +522,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento22ActionPerformed"/>
@@ -516,6 +541,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento23ActionPerformed"/>
@@ -534,6 +560,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento24ActionPerformed"/>
@@ -552,6 +579,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento25ActionPerformed"/>
@@ -570,6 +598,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento26ActionPerformed"/>
@@ -588,6 +617,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento29ActionPerformed"/>
@@ -606,6 +636,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento30ActionPerformed"/>
@@ -624,6 +655,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento27ActionPerformed"/>
@@ -642,6 +674,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento28ActionPerformed"/>
@@ -660,6 +693,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento33ActionPerformed"/>
@@ -678,6 +712,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento34ActionPerformed"/>
@@ -696,6 +731,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento31ActionPerformed"/>
@@ -714,6 +750,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento32ActionPerformed"/>
@@ -732,6 +769,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento37ActionPerformed"/>
@@ -750,6 +788,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento38ActionPerformed"/>
@@ -768,6 +807,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento35ActionPerformed"/>
@@ -786,6 +826,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento36ActionPerformed"/>
@@ -804,6 +845,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento41ActionPerformed"/>
@@ -822,6 +864,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento42ActionPerformed"/>
@@ -840,6 +883,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento39ActionPerformed"/>
@@ -858,6 +902,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento40ActionPerformed"/>
@@ -876,6 +921,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento45ActionPerformed"/>
@@ -894,6 +940,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento46ActionPerformed"/>
@@ -912,6 +959,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento43ActionPerformed"/>
@@ -930,6 +978,7 @@
                 <LineBorder roundedCorners="true" thickness="2"/>
               </Border>
             </Property>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsiento44ActionPerformed"/>
@@ -975,6 +1024,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboRutaItemStateChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboRutaActionPerformed"/>
       </Events>
       <AuxValues>

@@ -4,9 +4,17 @@ package Vista;
 import AccesoDatos.PasajeData;
 import AccesoDatos.PasajeroData;
 import AccesoDatos.RutaViajeData;
+import Entidades.Lugar;
 import Entidades.Pasajero;
+import Entidades.RutaViaje;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 
 /**
  *
@@ -16,15 +24,58 @@ public class VistaAsientos extends javax.swing.JInternalFrame {
 PasajeData pasajeData= new PasajeData();
 RutaViajeData rutaData = new RutaViajeData();
 PasajeroData pasajeroData = new PasajeroData();
+private JButton[] botonesAsientos;
+private int asientoSeleccionado = -1;
     /**
      * Creates new form VistaAsientos
      */
     public VistaAsientos() {
         initComponents();
         
-        cargarPasajeros();
-    }
+        
+        botonesAsientos = new JButton[]{
+    btnAsiento1, btnAsiento2, btnAsiento3, btnAsiento4, btnAsiento5,
+    btnAsiento6, btnAsiento7, btnAsiento8, btnAsiento9, btnAsiento10,
+    btnAsiento11, btnAsiento12, btnAsiento13, btnAsiento14, btnAsiento15,
+    btnAsiento16, btnAsiento17, btnAsiento18, btnAsiento19, btnAsiento20,
+    btnAsiento21, btnAsiento22, btnAsiento23, btnAsiento24, btnAsiento25,
+    btnAsiento26, btnAsiento27, btnAsiento28, btnAsiento29, btnAsiento30,
+    btnAsiento31, btnAsiento32, btnAsiento33, btnAsiento34, btnAsiento35,
+    btnAsiento36, btnAsiento37, btnAsiento38, btnAsiento39, btnAsiento40,
+    btnAsiento41, btnAsiento42, btnAsiento43, btnAsiento44, btnAsiento45,
+    btnAsiento46
+};
+        for (JButton boton : botonesAsientos) {
+    boton.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+    boton.setOpaque(true);
+    boton.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
+    boton.setFocusPainted(false);
+    
+    boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    
+    boton.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            if (boton.isEnabled()) {
+                // Resalta el borde en blanco o amarillo al pasar el mouse
+                boton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            }
+        }
 
+        @Override
+        public void mouseExited(MouseEvent e) {
+            // Vuelve a dejar tu borde negro original al quitar el mouse
+            boton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        }
+    
+         });       
+
+        
+    }
+        cargarPasajeros();
+        cargarViajes();
+        calcularAsientos();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,275 +155,322 @@ PasajeroData pasajeroData = new PasajeroData();
 
         btnAsiento1.setText("1");
         btnAsiento1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento1.setContentAreaFilled(false);
+        btnAsiento1.addActionListener(this::btnAsiento1ActionPerformed);
         panelAsientos.add(btnAsiento1);
         btnAsiento1.setBounds(30, 30, 70, 20);
 
         btnAsiento2.setText("2");
         btnAsiento2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento2.setContentAreaFilled(false);
         btnAsiento2.addActionListener(this::btnAsiento2ActionPerformed);
         panelAsientos.add(btnAsiento2);
         btnAsiento2.setBounds(120, 30, 70, 20);
 
         btnAsiento3.setText("3");
         btnAsiento3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento3.setContentAreaFilled(false);
         btnAsiento3.addActionListener(this::btnAsiento3ActionPerformed);
         panelAsientos.add(btnAsiento3);
         btnAsiento3.setBounds(320, 30, 70, 20);
 
         btnAsiento4.setText("4");
         btnAsiento4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento4.setContentAreaFilled(false);
         btnAsiento4.addActionListener(this::btnAsiento4ActionPerformed);
         panelAsientos.add(btnAsiento4);
         btnAsiento4.setBounds(410, 30, 70, 20);
 
         btnAsiento5.setText("5");
         btnAsiento5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento5.setContentAreaFilled(false);
         btnAsiento5.addActionListener(this::btnAsiento5ActionPerformed);
         panelAsientos.add(btnAsiento5);
         btnAsiento5.setBounds(30, 70, 70, 20);
 
         btnAsiento6.setText("6");
         btnAsiento6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento6.setContentAreaFilled(false);
         btnAsiento6.addActionListener(this::btnAsiento6ActionPerformed);
         panelAsientos.add(btnAsiento6);
         btnAsiento6.setBounds(120, 70, 70, 20);
 
         btnAsiento7.setText("7");
         btnAsiento7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento7.setContentAreaFilled(false);
         btnAsiento7.addActionListener(this::btnAsiento7ActionPerformed);
         panelAsientos.add(btnAsiento7);
         btnAsiento7.setBounds(320, 70, 70, 20);
 
         btnAsiento8.setText("8");
         btnAsiento8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento8.setContentAreaFilled(false);
         btnAsiento8.addActionListener(this::btnAsiento8ActionPerformed);
         panelAsientos.add(btnAsiento8);
         btnAsiento8.setBounds(410, 70, 70, 20);
 
         btnAsiento9.setText("9");
         btnAsiento9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento9.setContentAreaFilled(false);
         btnAsiento9.addActionListener(this::btnAsiento9ActionPerformed);
         panelAsientos.add(btnAsiento9);
         btnAsiento9.setBounds(30, 110, 70, 20);
 
         btnAsiento10.setText("10");
         btnAsiento10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento10.setContentAreaFilled(false);
         btnAsiento10.addActionListener(this::btnAsiento10ActionPerformed);
         panelAsientos.add(btnAsiento10);
         btnAsiento10.setBounds(120, 110, 70, 20);
 
         btnAsiento11.setText("11");
         btnAsiento11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento11.setContentAreaFilled(false);
         btnAsiento11.addActionListener(this::btnAsiento11ActionPerformed);
         panelAsientos.add(btnAsiento11);
         btnAsiento11.setBounds(320, 110, 70, 20);
 
         btnAsiento12.setText("12");
         btnAsiento12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento12.setContentAreaFilled(false);
         btnAsiento12.addActionListener(this::btnAsiento12ActionPerformed);
         panelAsientos.add(btnAsiento12);
         btnAsiento12.setBounds(410, 110, 70, 20);
 
         btnAsiento13.setText("13");
         btnAsiento13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento13.setContentAreaFilled(false);
         btnAsiento13.addActionListener(this::btnAsiento13ActionPerformed);
         panelAsientos.add(btnAsiento13);
         btnAsiento13.setBounds(30, 150, 70, 20);
 
         btnAsiento14.setText("14");
         btnAsiento14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento14.setContentAreaFilled(false);
         btnAsiento14.addActionListener(this::btnAsiento14ActionPerformed);
         panelAsientos.add(btnAsiento14);
         btnAsiento14.setBounds(120, 150, 70, 20);
 
         btnAsiento15.setText("15");
         btnAsiento15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento15.setContentAreaFilled(false);
         btnAsiento15.addActionListener(this::btnAsiento15ActionPerformed);
         panelAsientos.add(btnAsiento15);
         btnAsiento15.setBounds(320, 150, 70, 20);
 
         btnAsiento16.setText("16");
         btnAsiento16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento16.setContentAreaFilled(false);
         btnAsiento16.addActionListener(this::btnAsiento16ActionPerformed);
         panelAsientos.add(btnAsiento16);
         btnAsiento16.setBounds(410, 150, 70, 20);
 
         btnAsiento17.setText("17");
         btnAsiento17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento17.setContentAreaFilled(false);
         btnAsiento17.addActionListener(this::btnAsiento17ActionPerformed);
         panelAsientos.add(btnAsiento17);
         btnAsiento17.setBounds(30, 190, 70, 20);
 
         btnAsiento18.setText("18");
         btnAsiento18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento18.setContentAreaFilled(false);
         btnAsiento18.addActionListener(this::btnAsiento18ActionPerformed);
         panelAsientos.add(btnAsiento18);
         btnAsiento18.setBounds(120, 190, 70, 20);
 
         btnAsiento19.setText("19");
         btnAsiento19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento19.setContentAreaFilled(false);
         btnAsiento19.addActionListener(this::btnAsiento19ActionPerformed);
         panelAsientos.add(btnAsiento19);
         btnAsiento19.setBounds(320, 190, 70, 20);
 
         btnAsiento20.setText("20");
         btnAsiento20.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento20.setContentAreaFilled(false);
         btnAsiento20.addActionListener(this::btnAsiento20ActionPerformed);
         panelAsientos.add(btnAsiento20);
         btnAsiento20.setBounds(410, 190, 70, 20);
 
         btnAsiento21.setText("21");
         btnAsiento21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento21.setContentAreaFilled(false);
         btnAsiento21.addActionListener(this::btnAsiento21ActionPerformed);
         panelAsientos.add(btnAsiento21);
         btnAsiento21.setBounds(30, 230, 70, 20);
 
         btnAsiento22.setText("22");
         btnAsiento22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento22.setContentAreaFilled(false);
         btnAsiento22.addActionListener(this::btnAsiento22ActionPerformed);
         panelAsientos.add(btnAsiento22);
         btnAsiento22.setBounds(120, 230, 70, 20);
 
         btnAsiento23.setText("23");
         btnAsiento23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento23.setContentAreaFilled(false);
         btnAsiento23.addActionListener(this::btnAsiento23ActionPerformed);
         panelAsientos.add(btnAsiento23);
         btnAsiento23.setBounds(320, 230, 70, 20);
 
         btnAsiento24.setText("24");
         btnAsiento24.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento24.setContentAreaFilled(false);
         btnAsiento24.addActionListener(this::btnAsiento24ActionPerformed);
         panelAsientos.add(btnAsiento24);
         btnAsiento24.setBounds(410, 230, 70, 20);
 
         btnAsiento25.setText("25");
         btnAsiento25.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento25.setContentAreaFilled(false);
         btnAsiento25.addActionListener(this::btnAsiento25ActionPerformed);
         panelAsientos.add(btnAsiento25);
         btnAsiento25.setBounds(30, 270, 70, 20);
 
         btnAsiento26.setText("26");
         btnAsiento26.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento26.setContentAreaFilled(false);
         btnAsiento26.addActionListener(this::btnAsiento26ActionPerformed);
         panelAsientos.add(btnAsiento26);
         btnAsiento26.setBounds(120, 270, 70, 20);
 
         btnAsiento29.setText("29");
         btnAsiento29.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento29.setContentAreaFilled(false);
         btnAsiento29.addActionListener(this::btnAsiento29ActionPerformed);
         panelAsientos.add(btnAsiento29);
         btnAsiento29.setBounds(30, 310, 70, 20);
 
         btnAsiento30.setText("30");
         btnAsiento30.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento30.setContentAreaFilled(false);
         btnAsiento30.addActionListener(this::btnAsiento30ActionPerformed);
         panelAsientos.add(btnAsiento30);
         btnAsiento30.setBounds(120, 310, 70, 20);
 
         btnAsiento27.setText("27");
         btnAsiento27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento27.setContentAreaFilled(false);
         btnAsiento27.addActionListener(this::btnAsiento27ActionPerformed);
         panelAsientos.add(btnAsiento27);
         btnAsiento27.setBounds(320, 270, 70, 20);
 
         btnAsiento28.setText("28");
         btnAsiento28.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento28.setContentAreaFilled(false);
         btnAsiento28.addActionListener(this::btnAsiento28ActionPerformed);
         panelAsientos.add(btnAsiento28);
         btnAsiento28.setBounds(410, 270, 70, 20);
 
         btnAsiento33.setText("33");
         btnAsiento33.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento33.setContentAreaFilled(false);
         btnAsiento33.addActionListener(this::btnAsiento33ActionPerformed);
         panelAsientos.add(btnAsiento33);
         btnAsiento33.setBounds(30, 350, 70, 20);
 
         btnAsiento34.setText("34");
         btnAsiento34.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento34.setContentAreaFilled(false);
         btnAsiento34.addActionListener(this::btnAsiento34ActionPerformed);
         panelAsientos.add(btnAsiento34);
         btnAsiento34.setBounds(120, 350, 70, 20);
 
         btnAsiento31.setText("31");
         btnAsiento31.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento31.setContentAreaFilled(false);
         btnAsiento31.addActionListener(this::btnAsiento31ActionPerformed);
         panelAsientos.add(btnAsiento31);
         btnAsiento31.setBounds(320, 310, 70, 20);
 
         btnAsiento32.setText("32");
         btnAsiento32.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento32.setContentAreaFilled(false);
         btnAsiento32.addActionListener(this::btnAsiento32ActionPerformed);
         panelAsientos.add(btnAsiento32);
         btnAsiento32.setBounds(410, 310, 70, 20);
 
         btnAsiento37.setText("37");
         btnAsiento37.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento37.setContentAreaFilled(false);
         btnAsiento37.addActionListener(this::btnAsiento37ActionPerformed);
         panelAsientos.add(btnAsiento37);
         btnAsiento37.setBounds(30, 390, 70, 20);
 
         btnAsiento38.setText("38");
         btnAsiento38.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento38.setContentAreaFilled(false);
         btnAsiento38.addActionListener(this::btnAsiento38ActionPerformed);
         panelAsientos.add(btnAsiento38);
         btnAsiento38.setBounds(120, 390, 70, 20);
 
         btnAsiento35.setText("35");
         btnAsiento35.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento35.setContentAreaFilled(false);
         btnAsiento35.addActionListener(this::btnAsiento35ActionPerformed);
         panelAsientos.add(btnAsiento35);
         btnAsiento35.setBounds(320, 350, 70, 20);
 
         btnAsiento36.setText("36");
         btnAsiento36.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento36.setContentAreaFilled(false);
         btnAsiento36.addActionListener(this::btnAsiento36ActionPerformed);
         panelAsientos.add(btnAsiento36);
         btnAsiento36.setBounds(410, 350, 70, 20);
 
         btnAsiento41.setText("41");
         btnAsiento41.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento41.setContentAreaFilled(false);
         btnAsiento41.addActionListener(this::btnAsiento41ActionPerformed);
         panelAsientos.add(btnAsiento41);
         btnAsiento41.setBounds(30, 430, 70, 20);
 
         btnAsiento42.setText("42");
         btnAsiento42.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento42.setContentAreaFilled(false);
         btnAsiento42.addActionListener(this::btnAsiento42ActionPerformed);
         panelAsientos.add(btnAsiento42);
         btnAsiento42.setBounds(120, 430, 70, 20);
 
         btnAsiento39.setText("39");
         btnAsiento39.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento39.setContentAreaFilled(false);
         btnAsiento39.addActionListener(this::btnAsiento39ActionPerformed);
         panelAsientos.add(btnAsiento39);
         btnAsiento39.setBounds(320, 390, 70, 20);
 
         btnAsiento40.setText("40");
         btnAsiento40.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento40.setContentAreaFilled(false);
         btnAsiento40.addActionListener(this::btnAsiento40ActionPerformed);
         panelAsientos.add(btnAsiento40);
         btnAsiento40.setBounds(410, 390, 70, 20);
 
         btnAsiento45.setText("45");
         btnAsiento45.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento45.setContentAreaFilled(false);
         btnAsiento45.addActionListener(this::btnAsiento45ActionPerformed);
         panelAsientos.add(btnAsiento45);
         btnAsiento45.setBounds(30, 470, 70, 20);
 
         btnAsiento46.setText("46");
         btnAsiento46.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento46.setContentAreaFilled(false);
         btnAsiento46.addActionListener(this::btnAsiento46ActionPerformed);
         panelAsientos.add(btnAsiento46);
         btnAsiento46.setBounds(120, 470, 70, 20);
 
         btnAsiento43.setText("43");
         btnAsiento43.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento43.setContentAreaFilled(false);
         btnAsiento43.addActionListener(this::btnAsiento43ActionPerformed);
         panelAsientos.add(btnAsiento43);
         btnAsiento43.setBounds(320, 430, 70, 20);
 
         btnAsiento44.setText("44");
         btnAsiento44.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btnAsiento44.setContentAreaFilled(false);
         btnAsiento44.addActionListener(this::btnAsiento44ActionPerformed);
         panelAsientos.add(btnAsiento44);
         btnAsiento44.setBounds(410, 430, 70, 20);
@@ -392,6 +490,7 @@ PasajeroData pasajeroData = new PasajeroData();
         );
 
         cboRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Ruta", " " }));
+        cboRuta.addItemListener(this::cboRutaItemStateChanged);
         cboRuta.addActionListener(this::cboRutaActionPerformed);
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
@@ -482,197 +581,245 @@ PasajeroData pasajeroData = new PasajeroData();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void seleccionarAsiento(int numero){
+        if (asientoSeleccionado != -1) {
+            botonesAsientos[asientoSeleccionado -1].setBackground(Color.green);
+        }
+        
+        asientoSeleccionado = numero;
+        botonesAsientos[asientoSeleccionado-1].setBackground(Color.CYAN);
+        
+    }
     
     public void cargarPasajeros(){
     cboPasajero.removeAllItems();
     List<Pasajero> listaPasajeros = null;
     listaPasajeros =  pasajeroData.listarPasajeros();
         for (Pasajero listaPasajero : listaPasajeros) {
-            cboPasajero.addItem(String.valueOf(listaPasajero.getIdPasajero()) + "-" + listaPasajero.getDni() + "-" + listaPasajero.getNombre() + " " + listaPasajero.getApellido());
+            cboPasajero.addItem(String.valueOf(listaPasajero.getIdPasajero()) + " - " + listaPasajero.getDni() + " - " + listaPasajero.getNombre() + " - " + listaPasajero.getApellido());
         }
     }
     
-    private void calcularAsientos(){
+    public void cargarViajes(){
+    cboRuta.removeAllItems();
+    List<RutaViaje> listaRutas = null;
+            listaRutas = rutaData.listarRutas();
+            for (RutaViaje listaRuta : listaRutas) {
+            cboRuta.addItem(String.valueOf(listaRuta.getIdRuta() + " - " + listaRuta.getOrigen() + " - " + listaRuta.getDestino() + " - "  + listaRuta.getHoraSalida()));
+        }
+    }
     
+    public void calcularAsientos(){
+        
+        if (cboRuta.getSelectedItem() == null) {
+            return;
+        }
+    String cadena = cboRuta.getSelectedItem().toString();
+    String idTexto = cadena.split("-")[0].trim();
+    int idRuta = Integer.parseInt(idTexto);
+    List<Lugar> desocupados = rutaData.listarLugaresDesocupados(rutaData.buscarRutaPorID(idRuta));
+    List<Lugar> ocupados = rutaData.listarLugaresOcupados(rutaData.buscarRutaPorID(idRuta));
+    
+     for (JButton botonesAsiento : botonesAsientos ) {
+                botonesAsiento.setBackground(new Color(0,0,0));
+                botonesAsiento.setEnabled(false);
+        }
+    
+        for (Lugar desocupado : desocupados) {
+            int indice = desocupado.getNumeroAsiento()-1;
+            if (indice >=0 && indice < botonesAsientos.length ) {
+            botonesAsientos[indice].setBackground(Color.green);
+            botonesAsientos[indice].setEnabled(true);
+            }
+        }
+        
+        for (Lugar ocupado : ocupados) {
+            int indice = ocupado.getNumeroAsiento()-1;
+            if (indice >=0 && indice < botonesAsientos.length ) {
+            botonesAsientos[indice].setBackground(Color.red);
+             botonesAsientos[indice].setEnabled(false);
+            }
+        }
+        
     }
     private void btnAsiento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento2ActionPerformed
-        // TODO add your handling code here:
+       seleccionarAsiento(2);
     }//GEN-LAST:event_btnAsiento2ActionPerformed
 
     private void btnAsiento3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento3ActionPerformed
-        // TODO add your handling code here:
+      seleccionarAsiento(3);
     }//GEN-LAST:event_btnAsiento3ActionPerformed
 
     private void btnAsiento4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento4ActionPerformed
-        // TODO add your handling code here:
+       seleccionarAsiento(4);
     }//GEN-LAST:event_btnAsiento4ActionPerformed
 
     private void btnAsiento5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento5ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(5);
     }//GEN-LAST:event_btnAsiento5ActionPerformed
 
     private void btnAsiento6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento6ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(6);
     }//GEN-LAST:event_btnAsiento6ActionPerformed
 
     private void btnAsiento7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento7ActionPerformed
-        // TODO add your handling code here:
+      seleccionarAsiento(7);
     }//GEN-LAST:event_btnAsiento7ActionPerformed
 
     private void btnAsiento8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento8ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(8);
     }//GEN-LAST:event_btnAsiento8ActionPerformed
 
     private void btnAsiento9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento9ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(9);
     }//GEN-LAST:event_btnAsiento9ActionPerformed
 
     private void btnAsiento10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento10ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(10);
     }//GEN-LAST:event_btnAsiento10ActionPerformed
 
     private void btnAsiento11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento11ActionPerformed
-        // TODO add your handling code here:
+       seleccionarAsiento(11);
     }//GEN-LAST:event_btnAsiento11ActionPerformed
 
     private void btnAsiento12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento12ActionPerformed
-        // TODO add your handling code here:
+       seleccionarAsiento(12);
     }//GEN-LAST:event_btnAsiento12ActionPerformed
 
     private void btnAsiento13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento13ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(13);
     }//GEN-LAST:event_btnAsiento13ActionPerformed
 
     private void btnAsiento14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento14ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(14);
     }//GEN-LAST:event_btnAsiento14ActionPerformed
 
     private void btnAsiento15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento15ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(15);
     }//GEN-LAST:event_btnAsiento15ActionPerformed
 
     private void btnAsiento16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento16ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(16);
     }//GEN-LAST:event_btnAsiento16ActionPerformed
 
     private void btnAsiento17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento17ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(17);
     }//GEN-LAST:event_btnAsiento17ActionPerformed
 
     private void btnAsiento18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento18ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(18);
     }//GEN-LAST:event_btnAsiento18ActionPerformed
 
     private void btnAsiento19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento19ActionPerformed
-        // TODO add your handling code here:
+       seleccionarAsiento(19);
     }//GEN-LAST:event_btnAsiento19ActionPerformed
 
     private void btnAsiento20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento20ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(20);
     }//GEN-LAST:event_btnAsiento20ActionPerformed
 
     private void btnAsiento21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento21ActionPerformed
-        // TODO add your handling code here:
+         seleccionarAsiento(21);
     }//GEN-LAST:event_btnAsiento21ActionPerformed
 
     private void btnAsiento22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento22ActionPerformed
-        // TODO add your handling code here:
+         seleccionarAsiento(22);
     }//GEN-LAST:event_btnAsiento22ActionPerformed
 
     private void btnAsiento25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento25ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(25);
     }//GEN-LAST:event_btnAsiento25ActionPerformed
 
     private void btnAsiento26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento26ActionPerformed
-        // TODO add your handling code here:
+         seleccionarAsiento(26);
     }//GEN-LAST:event_btnAsiento26ActionPerformed
 
     private void btnAsiento23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento23ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(23);
     }//GEN-LAST:event_btnAsiento23ActionPerformed
 
     private void btnAsiento24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento24ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(24);
     }//GEN-LAST:event_btnAsiento24ActionPerformed
 
     private void btnAsiento29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento29ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(29);
     }//GEN-LAST:event_btnAsiento29ActionPerformed
 
     private void btnAsiento30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento30ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(30);
     }//GEN-LAST:event_btnAsiento30ActionPerformed
 
     private void btnAsiento27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento27ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(27);
     }//GEN-LAST:event_btnAsiento27ActionPerformed
 
     private void btnAsiento28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento28ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(28);
     }//GEN-LAST:event_btnAsiento28ActionPerformed
 
     private void btnAsiento33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento33ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(33);
     }//GEN-LAST:event_btnAsiento33ActionPerformed
 
     private void btnAsiento34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento34ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(34);
     }//GEN-LAST:event_btnAsiento34ActionPerformed
 
     private void btnAsiento31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento31ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(31);
     }//GEN-LAST:event_btnAsiento31ActionPerformed
 
     private void btnAsiento32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento32ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(32);
     }//GEN-LAST:event_btnAsiento32ActionPerformed
 
     private void btnAsiento37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento37ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(37);
     }//GEN-LAST:event_btnAsiento37ActionPerformed
 
     private void btnAsiento38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento38ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(38);
     }//GEN-LAST:event_btnAsiento38ActionPerformed
 
     private void btnAsiento35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento35ActionPerformed
-        // TODO add your handling code here:
+       seleccionarAsiento(35);
     }//GEN-LAST:event_btnAsiento35ActionPerformed
 
     private void btnAsiento36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento36ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(36);
     }//GEN-LAST:event_btnAsiento36ActionPerformed
 
     private void btnAsiento41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento41ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(41);
     }//GEN-LAST:event_btnAsiento41ActionPerformed
 
     private void btnAsiento42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento42ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(42);
     }//GEN-LAST:event_btnAsiento42ActionPerformed
 
     private void btnAsiento39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento39ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(39);
     }//GEN-LAST:event_btnAsiento39ActionPerformed
 
     private void btnAsiento40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento40ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(40);
     }//GEN-LAST:event_btnAsiento40ActionPerformed
 
     private void btnAsiento45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento45ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(45);
     }//GEN-LAST:event_btnAsiento45ActionPerformed
 
     private void btnAsiento46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento46ActionPerformed
-        // TODO add your handling code here:
+       seleccionarAsiento(46);
     }//GEN-LAST:event_btnAsiento46ActionPerformed
 
     private void btnAsiento43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento43ActionPerformed
-        // TODO add your handling code here:
+        seleccionarAsiento(43);
     }//GEN-LAST:event_btnAsiento43ActionPerformed
 
     private void btnAsiento44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento44ActionPerformed
-        // TODO add your handling code here:
+       seleccionarAsiento(44);
     }//GEN-LAST:event_btnAsiento44ActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -694,6 +841,14 @@ PasajeroData pasajeroData = new PasajeroData();
     private void cboPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPasajeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboPasajeroActionPerformed
+
+    private void cboRutaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboRutaItemStateChanged
+       calcularAsientos();
+    }//GEN-LAST:event_cboRutaItemStateChanged
+
+    private void btnAsiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento1ActionPerformed
+       seleccionarAsiento(1);
+    }//GEN-LAST:event_btnAsiento1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
