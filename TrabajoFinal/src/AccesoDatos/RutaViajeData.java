@@ -146,6 +146,11 @@ public class RutaViajeData {
     
     public void modificarRuta(RutaViaje rutaNueva){
     String sql = "UPDATE rutas SET Origen = ?, Destino = ?, HoraSalida = ?, HoraLlegada = ?, ID_Colectivo = ?, Precio = ?, Estado = ? WHERE ID_Ruta = ?";
+    
+    String sqlPasajes = "DELETE pasajes FROM pasajes JOIN lugares ON pasajes.ID_Lugar = lugares.ID_Lugar WHERE lugares.ID_Ruta = ?";
+    
+    String sqlLugares = "DELETE lugares FROM lugares WHERE lugares.ID_Ruta = ?";
+    
     try {
 
             PreparedStatement ps = con.prepareStatement(sql);
@@ -160,14 +165,34 @@ public class RutaViajeData {
             ps.setInt(8, rutaNueva.getIdRuta());
 
             ps.executeUpdate();
-
+            
             ps.close();
+            
+            
+            ps = con.prepareStatement(sqlPasajes);
+            ps.setInt(1, rutaNueva.getIdRuta());
+            ps.executeUpdate();
+            ps.close();
+            
+            
+            ps = con.prepareStatement(sqlLugares);
+            ps.setInt(1, rutaNueva.getIdRuta());
+            ps.executeUpdate();
+            ps.close();
+            
+            for (int i = 0; i < rutaNueva.getColectivo().getCapacidad(); i++) {
+               int numeroAsiento = i+1;
+               boolean estado = false;
+               Lugar lugar = new Lugar(rutaNueva,numeroAsiento,estado);
+               
+               lugarData.guardarLugar(lugar);
+            }
 
             System.out.println("Ruta Actualizada");
 
         } catch (SQLException ex) {
 
-            System.out.println("Error al actualizar ruta");
+            System.out.println("Error al actualizar ruta" + ex.getMessage());
             System.out.println(ex.getMessage());
         }
     }

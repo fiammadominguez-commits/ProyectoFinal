@@ -63,7 +63,7 @@ public class LugarData {
     }
     }
     
-    public void darDeBajaLugar(Lugar lugar){
+    public void desocupar(Lugar lugar){
     String sql = "UPDATE lugares SET Estado = false WHERE ID_Lugar = ?";
     
     try{
@@ -78,7 +78,7 @@ public class LugarData {
     }
     }
     
-     public void darDeAltaLugar(Lugar lugar){
+     public void ocupar(Lugar lugar){
     String sql = "UPDATE lugares SET Estado = true WHERE ID_Lugar = ?";
     
     try{
@@ -141,4 +141,31 @@ public class LugarData {
      
      return lugar;
    }
+     
+     public Lugar buscarLugar(RutaViaje ruta, int asiento){
+     Lugar lugar = null;
+     String sql = "SELECT * FROM lugares WHERE lugares.ID_Ruta = ? AND lugares.NumeroAsiento = ?";        
+     try{
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, ruta.getIdRuta());
+     ps.setInt(2, asiento);
+     ResultSet rs = ps.executeQuery();
+     
+         while (rs.next()) {
+             lugar = new Lugar(
+             rs.getInt("ID_Lugar"),
+                     ruta,
+                     rs.getInt("NumeroAsiento"),
+                     rs.getBoolean("Estado")
+             );
+         }
+         rs.close();
+         ps.close();
+     }
+     catch(SQLException ex){
+         System.out.println("Error al buscar Lugar " + ex.getMessage());
+     }
+         
+             return lugar;
+     }
 }

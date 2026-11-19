@@ -1,16 +1,20 @@
 
 package Vista;
 
+import AccesoDatos.LugarData;
 import AccesoDatos.PasajeData;
 import AccesoDatos.PasajeroData;
 import AccesoDatos.RutaViajeData;
 import Entidades.Lugar;
+import Entidades.Pasaje;
 import Entidades.Pasajero;
 import Entidades.RutaViaje;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -24,8 +28,10 @@ public class VistaAsientos extends javax.swing.JInternalFrame {
 PasajeData pasajeData= new PasajeData();
 RutaViajeData rutaData = new RutaViajeData();
 PasajeroData pasajeroData = new PasajeroData();
+LugarData lugarData = new LugarData();
 private JButton[] botonesAsientos;
 private int asientoSeleccionado = -1;
+private Color color = null;
     /**
      * Creates new form VistaAsientos
      */
@@ -582,11 +588,16 @@ private int asientoSeleccionado = -1;
     }// </editor-fold>//GEN-END:initComponents
 
     public void seleccionarAsiento(int numero){
+        
+        if (asientoSeleccionado == numero) {
+            return;
+        }
         if (asientoSeleccionado != -1) {
-            botonesAsientos[asientoSeleccionado -1].setBackground(Color.green);
+            botonesAsientos[asientoSeleccionado -1].setBackground(color);
         }
         
         asientoSeleccionado = numero;
+        color = botonesAsientos[asientoSeleccionado-1].getBackground();
         botonesAsientos[asientoSeleccionado-1].setBackground(Color.CYAN);
         
     }
@@ -637,7 +648,7 @@ private int asientoSeleccionado = -1;
             int indice = ocupado.getNumeroAsiento()-1;
             if (indice >=0 && indice < botonesAsientos.length ) {
             botonesAsientos[indice].setBackground(Color.red);
-             botonesAsientos[indice].setEnabled(false);
+            botonesAsientos[indice].setEnabled(true);
             }
         }
         
@@ -823,11 +834,102 @@ private int asientoSeleccionado = -1;
     }//GEN-LAST:event_btnAsiento44ActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        
+         if (cboPasajero.getSelectedItem() == null || cboRuta.getSelectedItem() == null) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un pasajero y una ruta");
+    return;
+}
+        
+        if (asientoSeleccionado == -1) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un asiento");
+            return;
+        }
+        
+         //Buscar fecha y hora de venta
+   
+   LocalDate fechaVenta = LocalDate.now();
+   LocalTime horaVenta = LocalTime.now();
+   
+   //Busca el  Pasajero
+   String  cadena = cboPasajero.getSelectedItem().toString();
+   String idTexto = cadena.split("-")[0].trim();
+   int idPasajero = Integer.valueOf(idTexto);
+   Pasajero pasajero = pasajeroData.buscarPasajeroPorID(idPasajero);
+   
+      //Busca la ruta para buscar el Lugar
+       cadena = cboRuta.getSelectedItem().toString();
+   idTexto = cadena.split("-")[0].trim();
+   int idRuta = Integer.valueOf(idTexto);
+   RutaViaje ruta = rutaData.buscarRutaPorID(idRuta);
+   
+        if (horaVenta.isAfter(ruta.getHoraSalida())) {
+             javax.swing.JOptionPane.showMessageDialog(this, "No puede Guardar pasaje despues de horario de salida");
+             return;
+        }
+   
+        if (pasajeData.pasajeroTienePasaje(ruta, pasajero)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Un pasajero no puede tener mas de un pasaje por ruta");
+             return;
+        }
+
+   
+   //Busca el Lugar
+   Lugar lugar = lugarData.buscarLugar(ruta, asientoSeleccionado);
+   
+   //Buscar Precio
+   double precio = ruta.getPrecio();
+   
+   //Definir estado
+   boolean estado = true;
+   
+   if (lugar.isEstado()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "El asiento seleccionado ya se encuentra ocupado");
+        return;
+    }
+   
+   Pasaje pasaje = new Pasaje(pasajero,lugar,fechaVenta,horaVenta,precio,estado);
+   pasajeData.guardarPasaje(pasaje);
+   lugarData.ocupar(lugar);
+   javax.swing.JOptionPane.showMessageDialog(this, "Pasaje agregado con exito");
+   calcularAsientos();
+   asientoSeleccionado = -1;
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+       if (asientoSeleccionado == -1) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un asiento");
+            return;
+        }
+       
+       if (cboRuta.getSelectedItem() == null) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar una ruta");
+    return;
+       }
+       
+       try{
+   
+      //Busca la ruta para buscar el Lugar
+     String  cadena = cboRuta.getSelectedItem().toString();
+  String idTexto = cadena.split("-")[0].trim();
+   int idRuta = Integer.valueOf(idTexto);
+   RutaViaje ruta = rutaData.buscarRutaPorID(idRuta);
+     
+      //Busca el Lugar
+   Lugar lugar = lugarData.buscarLugar(ruta, asientoSeleccionado);
+   
+           if (!lugar.isEstado()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "El lugar ya esta libre");
+                return;
+           }
+   
+   pasajeData.eliminarPasajePorLugar(lugar);
+   lugarData.desocupar(lugar);
+   calcularAsientos();
+   asientoSeleccionado = -1;
+       }
+       catch(Exception ex){
+       javax.swing.JOptionPane.showMessageDialog(this, "Ha sucedido un error");
+       }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -844,6 +946,7 @@ private int asientoSeleccionado = -1;
 
     private void cboRutaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboRutaItemStateChanged
        calcularAsientos();
+       asientoSeleccionado = -1;
     }//GEN-LAST:event_cboRutaItemStateChanged
 
     private void btnAsiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsiento1ActionPerformed

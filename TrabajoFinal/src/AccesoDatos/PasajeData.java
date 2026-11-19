@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -160,4 +161,42 @@ public class PasajeData {
     }
     return pasaje;
     }
+     
+     public boolean pasajeroTienePasaje(RutaViaje ruta, Pasajero pasajero){
+     boolean existe = false;
+     String sql = "SELECT COUNT(*) FROM pasajes p JOIN lugares l ON p.ID_Lugar = l.ID_Lugar WHERE p.ID_Pasajero = ? AND l.ID_Ruta = ?";
+     
+     try{
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, pasajero.getIdPasajero());
+     ps.setInt(2, ruta.getIdRuta());
+     ResultSet rs = ps.executeQuery();
+     
+         while (rs.next()) {
+             existe = rs.getInt(1) > 0;
+         }
+     rs.close();
+     ps.close();
+     }
+     catch(SQLException ex){
+         System.out.println("Error al consultar si pasajero tiene pasaje " + ex.getMessage());
+     }
+     
+     return existe;
+     }
+     
+     public void eliminarPasajePorLugar(Lugar lugar) {
+    String sql = "DELETE FROM pasajes WHERE ID_Lugar = ?";
+    
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, lugar.getIdLugar());
+        ps.executeUpdate();
+        ps.close();
+    } 
+    catch (SQLException ex) {
+        System.out.println("Error al eliminar pasaje por lugar: " + ex.getMessage());
+    
+    }
+}
 }
